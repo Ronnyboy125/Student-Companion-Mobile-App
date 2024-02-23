@@ -6,6 +6,7 @@ CS375-1 APP0: Part 2: Mobile Application(s) Proposal & Market Research
 
 ## Group Members
 * List all the group members here
+* Ron Schwencer, Bereket Lemma, Davaanyam Khaltar
 
 ## Purpose
 * You are laying the groundwork for future group projects. The next group will carry your work forward.
