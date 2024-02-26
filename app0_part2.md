@@ -20,15 +20,16 @@ CS375-1 APP0: Part 2: Mobile Application(s) Proposal & Market Research
  3. Based on user's input of how many hours they study, give recommendation of how many hours they should study for each class and when they should take a break 
  4. Board system - students can post information about events, intramural times, studying times, and hangouts (Similar to pirate port but more geared towards students interacting with each other). 
 
-Information Architecture of the App: 
-Go to app -> log in/sign up-> Home screen
-Things in menu: 
--Account ->(set pictures, link your account to your school/blackboard)
--Calendar ->add your class schedules 
--Courses -> can add your syllabus info, any info about classes, customize color or text of class (similar to canvas). 
--Board -> maybe show notifications of posts that you posted in board. 
--To do -> create to-do lists 
--Recommendation -> optional (turn on or turn off) 
+Information Architecture of the App: <br>
+Go to app -> log in/sign up-> Home screen <br>
+
+Things in menu:  <br>
+-Account ->(set pictures, link your account to your school/blackboard) <br>
+-Calendar ->add your class schedules  <br>
+-Courses -> can add your syllabus info, any info about classes, customize color or text of class (similar to canvas)  <br>
+-Board -> maybe show notifications of posts that you posted in board  <br>
+-To do -> create to-do lists <br>
+-Recommendation -> optional (turn on or turn off) <br>
 
 
 * Also, add more details, based on the **Market Reseach** below
