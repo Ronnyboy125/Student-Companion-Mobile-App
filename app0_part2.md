@@ -15,10 +15,20 @@ CS375-1 APP0: Part 2: Mobile Application(s) Proposal & Market Research
 
 * Working as a group, rewrite the idea(s) for an app in this section, make sure to add any modifications that the group agrees on to the project description(s).
   
- 1. The app connect with Blackboard to retreive grades and calendar(assignmnet/quiz due dates). 
+ 1. The app connect with Blackboard to retrieve grades and calendar(assignment/quiz due dates). 
  2. Gives reminders when an assignments/quizzes are due. 
  3. Based on user's input of how many hours they study, give recommendation of how many hours they should study for each class and when they should take a break 
  4. Board system - students can post information about events, intramural times, studying times, and hangouts (Similar to pirate port but more geared towards students interacting with each other). 
+
+Information Architecture of the App: 
+Go to app -> log in/sign up-> Home screen
+Things in menu: 
+-Account ->(set pictures, link your account to your school/blackboard)
+-Calendar ->add your class schedules 
+-Courses -> can add your syllabus info, any info about classes, customize color or text of class (similar to canvas). 
+-Board -> maybe show notifications of posts that you posted in board. 
+-To do -> create to-do lists 
+-Recommendation -> optional (turn on or turn off) 
 
 
 * Also, add more details, based on the **Market Reseach** below
