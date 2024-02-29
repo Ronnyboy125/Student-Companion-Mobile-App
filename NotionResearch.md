@@ -12,3 +12,8 @@ Individuals and small groups tend to use Notion’s free version and bigger grou
 Resource: https://www.simple.ink/blog/notion-stats  <br> 
 Notion website: https://www.notion.so/product
 
+Screenshots of Notion pages: <br> 
+![image](img/Notion1.png)
+![image](img/Notion2.png)
+![image](img/Notion3.png)
+
