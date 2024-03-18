@@ -8,34 +8,67 @@ CS375-1 APP1: Functional Specification & Schedule Document
 * Each time you make a change you must sync that change to the project Functional Specification sub folder and this document.
 
 # Group Members:
-List all the group members here.
+Sophie, Megan, Nick
 
-# Project Title
-This section should include a good functional/feature description of the project (a minimum of  three paragraphs). If you have previously proposed this same project, you can re-use what you wrote previously here.
+# Project Title 
+Student Companion
 
 # Project Mission/Vision
-This section should state the mission or vision of your project. It should be short (1-3 sentences) and easily memorable.
+
+Aiding students through the college transition by easing the typical problems college students face including social life, academics, and time management. 
 
 # Project Description
 This section should include a good functional/feature description of the project (a minimum of  three paragraphs). If you have previously proposed this same project, you can re-use what you wrote previously here.
 
+
+
 # Target Platforms
 In this section, specify which mobile devices your application will  target (e.g. Android, iPad, iPhone, Web, Windows, Mac, etc...) and why you are targeting those devices.
+
+- Android
+- iPhone. 
+Why: For portability and to make up for the lacking in functionality with mobile Pirate Port and Blackboard. We want to make it accessibility to the majority of the student population as well by making it available to both platforms. 
 
 # Class Design
 
 ## List of Likely Classes and Plugins
-This section will contain a list of Flutter classes that your group thinks you might need to use. 
-
-You don't have to include UML diagrams of the Flutter classes or class hierarchies in this section (they are already documented online), rather, just list the classes from Flutter you think you might use. This will need to change in the future as you learn what works and what does not work! Give URLs to these as appropriate.
+- Widget Class: https://api.flutter.dev/flutter/widgets/widgets-library.html
+- Enum Class: 
+- Flutter Form Building Package: https://pub.dev/packages/flutter_form_builder
+- Local Notifications: https://pub.dev/packages/flutter_local_notifications
+- URL Launcher: https://pub.dev/packages/url_launcher
+- Calendar Widget: 
+  - https://pub.dev/packages/table_calendar
+  - https://pub.dev/packages/syncfusion_flutter_calendar
+  - https://pub.dev/packages/flutter_advanced_calendar
+- Profile Picture Widget: https://pub.dev/packages/user_profile_avatar 
+- Fonts: https://fonts.google.com/ 
+- Alert Dialogues: https://pub.dev/packages/alert_dialog
+- Post to Facebook: https://pub.dev/packages/post_to_facebook
+- News Toolkit: https://github.com/flutter/news_toolkit
 
 ## Custom Classes 
 Depending on your project, you may need to design custom class hierarchies to manage the data for your custom application. For example, in the example asteroids game there are class hierarchies for Ships, Bullets, etc.
 
 It will take some research to determine what class hierarchies you can re-use from Flutter and what you will need to design from scratch. 
 
+- Student
+  - ID
+  - Email
+  - Name
+  - Dorm
+  - Other Information 
+  - Add to To-Do List
+  - Add to Calendar
+  - Post to Discussion Board
+  - Input information with classes and syllabi and integrate it to the calendar
+- Recommendations
+  - Notify User Based on their activity, to-do list, and calendar
+
 ## UML Diagrams
 You must use UML diagrams to illustrate any of your group designed class hierarchies and you must include those diagrams in this section of this file.
+
+
 
 # Ranked List of Proposed Features 
 List all the features that you hope your app will have.
@@ -44,7 +77,32 @@ For each feature write a short description of that feature.
 For each feature give two rank values: necessity and difficulty.
 Sort the list by necessity first and difficulty second. Thus the most necessary features that are the easiest to implement should be listed first, etc.
 
+1. Account: 
+   - 
+2. Blackboard/Pirate Port Connectivity: 
+   - The app will connect to the student's personal Blackboard and Pirate Port to access the courses they are in, what assignments they have due, and what is on their schedule. 
+3. Courses: 
+   - The app will take whatever courses the student is enrolled in and create different categories for each course. 
+4. Calendar
+   - The app will take what is in the student's BlackBoard and Pirate Port calendar and create two different calendars: a personal and public. The personal will only contain the students classes, meetings, clubs, etc. while the public will contain university-wide events. 
+5. To-Do List & Reminders
+   - The app will take what is put into BlackBoard and transfer it into a to-do list for the student. The student can then check things off and add new things that maybe aren't on BB. 
+6. Forum/Bulletin Board
+   - Students and Clubs can post about social events on this forum. Other students will be able to see when and where it's taking place and join in on the fun. 
+7. Recommendations
+   - The app will analyze your usage, calendar, and to-do list and determine study tips, i.e. "You should study [subject] for [number] hours".
+
 # Proposed Schedule
 Here you will put a proposed schedule of when you plan to complete each feature described in the previous section. You should have major milestones with dates as well in this schedule.
 
-
+3/18 - Start Specifications and Flutter Libraries
+3/22 - Finish Specifications, Give Rough Mock-Up of Main Pages
+4/8 - Rough Mock-Up of all pages, Begin Prototyping
+4/12 - Prototyping Finished
+4/14 - Begin Coding Login Page, Research BB and PP connectivity
+4/20 - finalize BB connectivity, begin parsing information into courses, calendar, and to-do
+4/24 - Create forum
+4/26 - Create recommendations alerts
+4/30 - Finish up visual/UI design, bug fixing
+5/3 - Beta Version Finished
+5/8 - Final Version Finished
