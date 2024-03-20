@@ -18,8 +18,8 @@ Student Companion
 Aiding students through the college transition by easing the typical problems college students face including social life, academics, and time management. 
 
 # Project Description
-This section should include a good functional/feature description of the project (a minimum of  three paragraphs). If you have previously proposed this same project, you can re-use what you wrote previously here.
 
+The "Student-Companion" Application is designed to streamline the academic and extracurricular activities of students within an educational institution. The application offers a centralized platform where students can manage their schedules, access course information, collaborate on school-wide events, and receive personalized recommendations to enhance their productivity and well-being.
 
 
 # Target Platforms
