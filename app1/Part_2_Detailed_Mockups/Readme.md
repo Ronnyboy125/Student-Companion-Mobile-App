@@ -10,6 +10,8 @@ CS375-1 APP1: User Interface Design
 
 ## Mock Up Design for Student Companion App
 
+Link to Figma Prototype: https://www.figma.com/proto/UQjFS8kcViiM8KkOnEHaiQ/CS375_StudentCompanion?type=design&node-id=1-3&t=mLHTG3kqlc8ygGtR-1&scaling=scale-down&page-id=0%3A1&starting-point-node-id=1%3A3&mode=design
+
 Rough Draft Outline:
 
 ![alt text](StudentCompanionOutline.png)
