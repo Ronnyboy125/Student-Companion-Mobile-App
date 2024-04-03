@@ -83,19 +83,33 @@ Sort the list by necessity first and difficulty second. Thus the most necessary 
 
 1. Account: 
    - The app will contain general user information, user interests
+   - Necessity: 2
+   - Difficulty: 1
 2. Blackboard/Pirate Port Connectivity: 
-   - The app will connect to the student's personal Blackboard and Pirate Port to access the courses they are in, what assignments they have due, and what is on their schedule. 
+   - The app will connect to the student's personal Blackboard and Pirate Port to access the courses they are in, what assignments they have due, and what is on their schedule.
+   - Necessity: 1
+   - Difficulty: 4 
 3. Courses: 
    - The app will take whatever courses the student is enrolled in and create different categories for each course. 
+   - Necessity: 6
+   - Difficulty: 2
 4. Calendar
    - The app will take what is in the student's BlackBoard and Pirate Port calendar and create two different calendars: a personal and public. The personal will only contain the students classes, meetings, clubs, etc. while the public will contain university-wide events. 
+   - Necessity: 3
+   - Difficulty: 3
 5. To-Do List & Reminders
    - The app will take what is put into BlackBoard and transfer it into a to-do list for the student. The student can then check things off and add new things that maybe aren't on BB. 
+   - Necessity: 4
+   - Difficulty: 5
 6. Forum/Bulletin Board
    - Students and Clubs can post about social events on this forum. Other students will be able to see when and where it's taking place and join in on the fun. 
+   - Necessity: 5
+   - Difficulty: 6 
 7. Recommendations
    - The app will analyze your usage, calendar, and to-do list and determine study tips, i.e. "You should study [subject] for [number] hours".
    - The app will star events and announcements that fit based on previously attended events and interests. 
+   - Necessity: 7
+   - Difficulty: 7
 
 # Proposed Schedule
 Here you will put a proposed schedule of when you plan to complete each feature described in the previous section. You should have major milestones with dates as well in this schedule.
