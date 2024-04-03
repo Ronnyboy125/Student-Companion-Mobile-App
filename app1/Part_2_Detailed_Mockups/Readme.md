@@ -46,8 +46,14 @@ This is the 3rd button of four buttons that are displayed on the bottom. The pur
 
 This is the page that will be displayed if the user presses the plus button on the Todo List page.
 
+![alt text](reminder.PNG)
+
+This is what you would see when you press the bell icon. It has all the reminders and notifications that you would see from your feed, courses and todo lists.
+
 ![alt text](<My Account.PNG>)
 
 This screen should display all the personal information of the student that can be edited upon clicking. This is the final tab.
 
-Link to Figma Protoype Here: 
+![alt text](added1.PNG)
+
+This screens comes up when you press the 3 bars on your right hand corner on the my account page. When you press, you have the option to select from 4 different tabs such as edit profile, add interest, recommendations, and connect to pirate port
