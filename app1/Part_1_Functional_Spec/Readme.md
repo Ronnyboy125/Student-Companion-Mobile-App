@@ -72,7 +72,7 @@ It will take some research to determine what class hierarchies you can re-use fr
 ## UML Diagrams
 You must use UML diagrams to illustrate any of your group designed class hierarchies and you must include those diagrams in this section of this file.
 
-
+<img title="UML Diagram" alt="UML Diagram" src="UMLDiagram.png">
 
 # Ranked List of Proposed Features 
 List all the features that you hope your app will have.
