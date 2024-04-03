@@ -21,6 +21,10 @@ Aiding students through the college transition by easing the typical problems co
 
 The "Student-Companion" Application is designed to streamline the academic and extracurricular activities of students within an educational institution. The application offers a centralized platform where students can manage their schedules, access course information, collaborate on school-wide events, and receive personalized recommendations to enhance their productivity and well-being.
 
+All students activities will have the oppurtunity to be ranked by importance, and will show up as reminders for the students. The events will have detailed descriptions of what time they are, their location, and options to invite friends or add the event to the calendar in a way that fits their organizational choosing (potentially colors). Based on which events are frequently viewed and added to the calendar recomendations will be displayed visually, potentially starring activities that are recommended for the user. 
+
+The hope of this app is to make everything visible in one place while also encompassing an easy to read, easy to use design. The app will include a three page bar system where you can easily move between tabs to find what you need. The tabs will include an announcment page where every event will be posted with ways to invite a friend, add to the calendar, and see if it is recommended. There will be a calendar page that will show the calendar in a view of the users choosing. (daily, weekly, monthly). Finally there will be a profile tab that keeps all the users information including username, year in school, interests, etc. There will be a tab in the upper corner of each page taking the user to their reminders that will be placed by importance. All of this will provide a design that is easy to use and familar to users as it is set up simialr to other apps they already use like Instagram. 
+
 
 # Target Platforms
 In this section, specify which mobile devices your application will  target (e.g. Android, iPad, iPhone, Web, Windows, Mac, etc...) and why you are targeting those devices.
