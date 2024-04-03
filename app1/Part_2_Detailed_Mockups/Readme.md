@@ -10,6 +10,14 @@ CS375-1 APP1: User Interface Design
 
 ## Mock Up Design for Student Companion App
 
+Rough Draft Outline:
+
+![alt text](StudentCompanionOutline.png)
+
+
+
+Prototype Pages Screenshotted: 
+
 ![alt text](Login.PNG)
 
 This is the log-in page student will be greeted with upon downloading the application. There are 2 ways to register, using personal information or blackboard. Each sign in will require Whitworth Integration upon signing up. 
@@ -40,6 +48,4 @@ This is the page that will be displayed if the user presses the plus button on t
 
 This screen should display all the personal information of the student that can be edited upon clicking.
 
-Notes: 
-
-Pages to Add - Make To-Do page, Recommendation page, Bell Icon page and details tab on each courses.
+Link to Figma Protoype Here: 
