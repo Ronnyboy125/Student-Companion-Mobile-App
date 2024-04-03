@@ -28,6 +28,14 @@ This screen is the first of four buttons that are displayed on the bottom side o
 
 This screen is the 3rd screen of four buttons that are displayed on the bottom side of the screen. It will display the current date, assignment due on that day and the day after that. Upon pressing each day, you will be able to see what assignments are due on each one of them.
 
+![alt text](Todo.PNG)
+
+This is the 2nd button of four buttons that are displayed on the bottom. The purpose of this tab is to show what type of todo lists you have created. You can add, remove and edit those lists and mark them as complete.
+
+![alt text](Todo1.PNG)
+
+This is the page that will be displayed if the user presses the plus button on the Todo List page.
+
 ![alt text](<My Account.PNG>)
 
 This screen should display all the personal information of the student that can be edited upon clicking.
