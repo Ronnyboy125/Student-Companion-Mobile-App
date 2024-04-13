@@ -20,21 +20,26 @@ void main() {
 
 // main app for running/building/navigating
 class MainApp extends StatelessWidget {
-  const MainApp({Key? key});
+  const MainApp({Key? key}); // constructor; delegates to parent
 
+  // widget builder
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false, // removes "DEBUG" banner from top left - Eli
-      title: 'Whitworth University',
+      debugShowCheckedModeBanner: false, // removes "DEBUG" banner from top left
+      title: 'Student Companion', // title used to identify the app
+      // default app themeing
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomeNav(title: 'Flutter Demo Home Page'),
+      // creates main page
+      // since HomeNav uses widgets built under itself, rather than adjacent, having one 'page' makes most sense - Eli
+      home: const HomeNav(title: 'Student Companion Main Page'), 
     );
   }
 }
 
+// Main home page; general workings of the app
 class HomeNav extends StatefulWidget {
   const HomeNav({Key? key, required this.title});
 
