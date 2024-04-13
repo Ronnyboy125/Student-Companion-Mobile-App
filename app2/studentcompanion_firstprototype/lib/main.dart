@@ -18,7 +18,7 @@ void main() {
   runApp(const MainApp());
 }
 
-// main app for running/building/navigating
+// main app for running/building
 class MainApp extends StatelessWidget {
   const MainApp({Key? key}); // constructor; delegates to parent
 
@@ -41,17 +41,20 @@ class MainApp extends StatelessWidget {
 
 // Main home page; general workings of the app
 class HomeNav extends StatefulWidget {
-  const HomeNav({Key? key, required this.title});
+  const HomeNav({Key? key, required this.title}); // constructor; delegates to parent
+  final String title; // title of the widget for Flutter's processing use
 
-  final String title;
-
+  // creates main widget body that requires state
   @override
-  State<HomeNav> createState() => _MyHomePageState();
+  State<HomeNav> createState() => _HomeNavState();
 }
 
-class _MyHomePageState extends State<HomeNav> {
+class _HomeNavState extends State<HomeNav> {
+  // idex for selected option in the bottom nav bar
   int _selectedIndex = 0;
 
+  // list content widgets for each tab
+  // TODO(any): fill with actual widgets
   static const List<Widget> _widgetOptions = <Widget>[
     Text('My Courses Page'),
     Text('Information Board Page'),
@@ -59,29 +62,37 @@ class _MyHomePageState extends State<HomeNav> {
     Text('ToDo List Page'),
   ];
 
+  // when nav bar item is tapped, updates index & reloads page
   void _onItemTapped(int index) {
     setState(() {
       _selectedIndex = index;
     });
   }
 
+  // actually builds widget
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Center(child: Text('Whitworth University')),
+        // main top app bar title
+        title: const Center(child: Text('Whitworth University')),
         actions: [
           IconButton(
+            // action pressing button takes (notification tab)
+            // TODO(any): add notification tab functionality
             onPressed: () {},
-            icon: Icon(Icons.notifications),
+            icon: const Icon(Icons.notifications),
           ),
           IconButton(
+            // action pressing button takes (account tab)
+            // TODO(any): add account tab functionality
             onPressed: () {},
-            icon: Icon(Icons.account_circle),
+            icon: const Icon(Icons.account_circle),
           ),
         ],
       ),
       body: Center(
+        // displays appropriate widget option from list based on current index of bottom nav bar
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
       bottomNavigationBar: BottomNavigationBar(
@@ -103,10 +114,10 @@ class _MyHomePageState extends State<HomeNav> {
             label: 'ToDo List',
           ),
         ],
-        currentIndex: _selectedIndex,
+        currentIndex: _selectedIndex, // update display based on current index
         selectedItemColor: Colors.blue, // Set the selected item color to blue
         unselectedItemColor: Colors.black, // Set the unselected item color to black
-        onTap: _onItemTapped,
+        onTap: _onItemTapped, // change current index
       ),
     );
   }
