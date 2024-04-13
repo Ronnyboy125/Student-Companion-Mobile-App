@@ -1,34 +1,50 @@
+// /////////////////////////////////////////////////////////////////
+// Project/File Comment
+//
+// Name: Student Companion App
+// Purpose <WIP>
+// Creators: Ethan Wagner, Kiernan Martin, Eli Chapman
+// Colaborators: Dr. P. Tucker
+// 
+// Sources: <WIP>
+//
+// /////////////////////////////////////////////////////////////////
+
+// packages
 import 'package:flutter/material.dart';
 
+// main (comment for cleaner formatting)
 void main() {
-  runApp(const MyApp());
+  runApp(const MainApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key});
+// main app for running/building/navigating
+class MainApp extends StatelessWidget {
+  const MainApp({Key? key});
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false, // removes "DEBUG" banner from top left - Eli
       title: 'Whitworth University',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const HomeNav(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title});
+class HomeNav extends StatefulWidget {
+  const HomeNav({Key? key, required this.title});
 
   final String title;
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<HomeNav> createState() => _MyHomePageState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
+class _MyHomePageState extends State<HomeNav> {
   int _selectedIndex = 0;
 
   static const List<Widget> _widgetOptions = <Widget>[
