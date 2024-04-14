@@ -35,10 +35,10 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.6
+  
   table_calendar: ^3.1.1
+  profile_photo: ^1.0.3
 
-  # for profile picture package
-  user_profile_avatar: ^0.1.2
 
 dev_dependencies:
   flutter_test:
