@@ -37,6 +37,9 @@ dependencies:
   cupertino_icons: ^1.0.6
   table_calendar: ^3.1.1
 
+  # for profile picture package
+  user_profile_avatar: ^0.1.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

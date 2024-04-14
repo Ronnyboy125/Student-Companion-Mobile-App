@@ -10,10 +10,19 @@
 //
 // /////////////////////////////////////////////////////////////////
 
+// Working Notes:
+// Eli: a lot of this is similar to PiratePort, I feel like doing integration there would be good
+
+
+
 // packages
 import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart'; // Import table_calendar package
 
+// files
+import './profile.dart';
+
+// main (comment for cleaner formatting)
 void main() {
   runApp(const MainApp());
 }
@@ -30,7 +39,12 @@ class MainApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: const HomeNav(title: 'Student Companion Main Page'), // Create instance of HomeNav widget as the home page
+      // creates main page
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const HomeNav(title: 'Student Companion Main Page'),
+        '/profile': (context) => const ProfileShell(),
+      },
     );
   }
 }
@@ -86,8 +100,13 @@ class _HomeNavState extends State<HomeNav> {
             icon: const Icon(Icons.notifications), // Notifications icon
           ),
           IconButton(
-            onPressed: () {}, // Functionality for account button
-            icon: const Icon(Icons.account_circle), // Account icon
+            // action pressing button takes (account tab)
+            // https://docs.flutter.dev/cookbook/navigation/named-routes
+            // TODO(any): add account tab functionality
+            onPressed: () {
+              Navigator.pushNamed(context, '/profile');
+            },
+            icon: const Icon(Icons.account_circle),
           ),
         ],
       ),
