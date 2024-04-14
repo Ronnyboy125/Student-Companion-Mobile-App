@@ -37,6 +37,8 @@ void main() {
 }
 
 // this is curently where the user's photo is, this should be changed to be safer/more effective
+// TODO(any): have better pfp integration
+// TODO(any): handle photo formatting
 NetworkImage _userPhoto = const NetworkImage('https://images.unsplash.com/photo-1602466439270-97a39a1496a4?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFiaXR8ZW58MHx8MHx8fDA%3D');
 
 // MainApp widget
@@ -118,6 +120,7 @@ class _HomeNavState extends State<HomeNav> {
           // TODO(any): add account tab functionality
           ProfilePhoto(
               totalWidth: 31, // sets diameter
+              cornerRadius: 20, // sets how curved the corners are
               color: const Color.fromARGB(255, 61, 61, 61), // color to show if no image
               image: _userPhoto, // sets image to display
               // sets what to do on tap, switched to profile page
