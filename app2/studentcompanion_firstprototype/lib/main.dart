@@ -12,112 +12,111 @@
 
 // packages
 import 'package:flutter/material.dart';
+import 'package:table_calendar/table_calendar.dart'; // Import table_calendar package
 
-// main (comment for cleaner formatting)
 void main() {
   runApp(const MainApp());
 }
 
-// main app for running/building
+// MainApp widget
 class MainApp extends StatelessWidget {
-  const MainApp({Key? key}); // constructor; delegates to parent
+  const MainApp({Key? key});
 
-  // widget builder
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false, // removes "DEBUG" banner from top left
-      title: 'Student Companion', // title used to identify the app
-      // default app themeing
+      debugShowCheckedModeBanner: false,
+      title: 'Student Companion',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      // creates main page
-      // since HomeNav uses widgets built under itself, rather than adjacent, having one 'page' makes most sense - Eli
-      home: const HomeNav(title: 'Student Companion Main Page'), 
+      home: const HomeNav(title: 'Student Companion Main Page'), // Create instance of HomeNav widget as the home page
     );
   }
 }
 
-// Main home page; general workings of the app
+// HomeNav widget
 class HomeNav extends StatefulWidget {
-  const HomeNav({Key? key, required this.title}); // constructor; delegates to parent
-  final String title; // title of the widget for Flutter's processing use
+  const HomeNav({Key? key, required this.title});
 
-  // creates main widget body that requires state
+  final String title;
+
   @override
   State<HomeNav> createState() => _HomeNavState();
 }
 
+// HomeNav state
 class _HomeNavState extends State<HomeNav> {
-  // idex for selected option in the bottom nav bar
-  int _selectedIndex = 0;
+  int _selectedIndex = 0; // Index for selected option in the bottom nav bar
 
-  // list content widgets for each tab
-  // TODO(any): fill with actual widgets
-  static const List<Widget> _widgetOptions = <Widget>[
+  // List of content widgets for each tab
+  static List<Widget> _widgetOptions = <Widget>[
+    // Placeholder for My Courses page
     Text('My Courses Page'),
+
+    // Placeholder for Information Board page
     Text('Information Board Page'),
-    Text('Calendar Page'),
+
+    // Calendar page with TableCalendar widget
+    TableCalendar(
+      firstDay: DateTime.utc(2020, 1, 1), // Set the first selectable day
+      lastDay: DateTime.utc(2030, 12, 31), // Set the last selectable day
+      focusedDay: DateTime.now(), // Set the initially focused day
+    ),
+
+    // Placeholder for ToDo List page
     Text('ToDo List Page'),
   ];
 
-  // when nav bar item is tapped, updates index & reloads page
+  // Function to handle when a bottom nav bar item is tapped
   void _onItemTapped(int index) {
     setState(() {
-      _selectedIndex = index;
+      _selectedIndex = index; // Update the index
     });
   }
 
-  // actually builds widget
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        // main top app bar title
-        title: const Center(child: Text('Whitworth University')),
+        title: const Center(child: Text('Whitworth University')), // App bar title
         actions: [
           IconButton(
-            // action pressing button takes (notification tab)
-            // TODO(any): add notification tab functionality
-            onPressed: () {},
-            icon: const Icon(Icons.notifications),
+            onPressed: () {}, // Functionality for notifications button
+            icon: const Icon(Icons.notifications), // Notifications icon
           ),
           IconButton(
-            // action pressing button takes (account tab)
-            // TODO(any): add account tab functionality
-            onPressed: () {},
-            icon: const Icon(Icons.account_circle),
+            onPressed: () {}, // Functionality for account button
+            icon: const Icon(Icons.account_circle), // Account icon
           ),
         ],
       ),
       body: Center(
-        // displays appropriate widget option from list based on current index of bottom nav bar
-        child: _widgetOptions.elementAt(_selectedIndex),
+        child: _widgetOptions.elementAt(_selectedIndex), // Display the selected widget based on the index
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.book),
-            label: 'My Courses',
+            icon: Icon(Icons.book), // Icon for My Courses page
+            label: 'My Courses', // Label for My Courses page
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.info),
-            label: 'Information Board',
+            icon: Icon(Icons.info), // Icon for Information Board page
+            label: 'Information Board', // Label for Information Board page
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.calendar_today),
-            label: 'Calendar',
+            icon: Icon(Icons.calendar_today), // Icon for Calendar page
+            label: 'Calendar', // Label for Calendar page
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.check_box),
-            label: 'ToDo List',
+            icon: Icon(Icons.check_box), // Icon for ToDo List page
+            label: 'ToDo List', // Label for ToDo List page
           ),
         ],
-        currentIndex: _selectedIndex, // update display based on current index
-        selectedItemColor: Colors.blue, // Set the selected item color to blue
-        unselectedItemColor: Colors.black, // Set the unselected item color to black
-        onTap: _onItemTapped, // change current index
+        currentIndex: _selectedIndex, // Current index for the selected item
+        selectedItemColor: Colors.blue, // Color for the selected item
+        unselectedItemColor: Colors.black, // Color for unselected items
+        onTap: _onItemTapped, // Function to handle when an item is tapped
       ),
     );
   }
