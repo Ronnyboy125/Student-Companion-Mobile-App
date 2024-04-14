@@ -68,7 +68,7 @@ class _HomeNavState extends State<HomeNav> {
   int _selectedIndex = 0; // Index for selected option in the bottom nav bar
 
   // List of content widgets for each tab
-  static List<Widget> _widgetOptions = <Widget>[
+  static final List<Widget> _widgetOptions = <Widget>[
     // Placeholder for My Courses page
     Text('My Courses Page'),
 
