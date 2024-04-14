@@ -11,6 +11,10 @@
 // == | =========================================================== |=====================
 // 01 | https://docs.flutter.dev/cookbook/navigation/named-routes   | for creating simple account/notification tabs
 // 02 | https://pub.dev/packages/user_profile_avatar/example        | for work on creating a working user icon
+// 03 | https://stackoverflow.com/questions/76789221/how-to-add-padding-to-the-leading-and-action-icons-on-the-appbar | used to remeber padding, help with user icon spacing
+// 04 | https://docs.flutter.dev/ui/assets/assets-and-images        | used for remembering how images work
+// 05 | https://pub.dev/packages/profile_photo                      | package for handling profile photo
+// 06 | https://pub.dev/packages/user_profile_avatar/example        | used code for handling super delegation
 //
 // /////////////////////////////////////////////////////////////////
 
@@ -20,16 +24,20 @@
 
 
 // packages
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'; // general helpful material components for flutter
 import 'package:table_calendar/table_calendar.dart'; // Import table_calendar package
+import 'package:profile_photo/profile_photo.dart'; // package used for handling a clickable profile photo
 
 // files
-import './profile.dart';
+import './profile.dart'; // profile widget
 
 // main (comment for cleaner/consistent formatting)
 void main() {
   runApp(const MainApp());
 }
+
+// this is curently where the user's photo is, this should be changed to be safer/more effective
+NetworkImage _userPhoto = const NetworkImage('https://images.unsplash.com/photo-1602466439270-97a39a1496a4?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFiaXR8ZW58MHx8MHx8fDA%3D');
 
 // MainApp widget
 class MainApp extends StatelessWidget {
@@ -38,22 +46,24 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
+      debugShowCheckedModeBanner: false, // removes "DEBUG" banner from top right of app
       title: 'Student Companion',
+      // overarching data for the theme of the application
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      // creates main page
-      initialRoute: '/',
+      initialRoute: '/', // creates main page
+      // due to the simplicity of the nature of pages of this application, routes was chosen to be used 
+      // (as opposed to a more complex navigator)
       routes: {
-        '/': (context) => const HomeNav(title: 'Student Companion Main Page'),
-        '/profile': (context) => const ProfileShell(),
+        '/': (context) => const HomeNav(title: 'Student Companion Main Page'), // homepage route
+        '/profile': (context) => const ProfileShell(), // profile route
       },
     );
   }
 }
 
-// HomeNav widget
+// HomeNav widget; holds most of the main functionality of the app
 class HomeNav extends StatefulWidget {
   const HomeNav({Key? key, required this.title});
 
@@ -104,14 +114,18 @@ class _HomeNavState extends State<HomeNav> {
             onPressed: () {}, // Functionality for notifications button
             icon: const Icon(Icons.notifications), // Notifications icon
           ),
-          IconButton(
-            // action pressing button takes (account tab)
-            // TODO(any): add account tab functionality
-            onPressed: () {
-              Navigator.pushNamed(context, '/profile');
-            },
-            icon: const Icon(Icons.account_circle),
-          ),
+          // action pressing button takes (account tab)
+          // TODO(any): add account tab functionality
+          ProfilePhoto(
+              totalWidth: 31, // sets diameter
+              color: const Color.fromARGB(255, 61, 61, 61), // color to show if no image
+              image: _userPhoto, // sets image to display
+              // sets what to do on tap, switched to profile page
+              onTap: () {
+                  Navigator.pushNamed(context, '/profile'); 
+                }
+            ),
+          const Padding(padding: EdgeInsets.all(10)), // provides padding so profile photo is not on edge of screen
         ],
       ),
       body: Center(
