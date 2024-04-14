@@ -6,12 +6,13 @@
 //
 // /////////////////////////////////////////////////////////////////
 
-
+//temp sources
+//https://pub.dev/packages/json_cache
 
 // packages
 import 'package:flutter/material.dart';
 import 'package:profile_photo/profile_photo.dart'; // package used for handling a clickable profile photo
-
+    
 // widget to be called that sets up profile page
 class ProfileShell extends StatelessWidget{
   ProfileShell(this.user_image, {Key? key,});
@@ -19,7 +20,8 @@ class ProfileShell extends StatelessWidget{
   NetworkImage user_image; // user profile photo to be used throught the program
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
+    
     // scaffolds main profile page
     return Scaffold(
       appBar: AppBar(
@@ -30,11 +32,13 @@ class ProfileShell extends StatelessWidget{
               cornerRadius: 21, // sets corner curvature
               color: Colors.black, // color to show if no image
               image: user_image, // sets image to display
-              //onTap: () => print("aa"), // sets what to do on tap, test rn
+              // TODO(any): add profile editing functionality by tapping photo
+              //onTap: // sets what to do on tap
             ),
             const Padding(padding: EdgeInsets.all(10)), // adds padding to the right of the icon
         ],
       ),
+      // TODO(any): add user information to body
       //body: 
     );
   }

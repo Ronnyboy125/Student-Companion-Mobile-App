@@ -27,9 +27,15 @@
 import 'package:flutter/material.dart'; // general helpful material components for flutter
 import 'package:table_calendar/table_calendar.dart'; // Import table_calendar package
 import 'package:profile_photo/profile_photo.dart'; // package used for handling a clickable profile photo
+//import 'package:json_cache/json_cache.dart'; // copied from https://pub.dev/packages/json_cache/install
+import 'package:safe_local_storage/safe_local_storage.dart'; // copied from https://pub.dev/packages/safe_local_storage
 
 // files
 import './profile.dart'; // profile widget
+
+// sets storage location for user data
+// currently this is set to a SPECIFIC place on my SPECIFC mac -- should be changed in future
+final storage = SafeLocalStorage('storage_test.json');
 
 // main (comment for cleaner/consistent formatting)
 void main() {
@@ -50,6 +56,14 @@ class MainApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
+    // writes to storage
+    storage.write (
+      {
+        "egg" : "burg"
+      }
+    );
+    
     return MaterialApp(
       debugShowCheckedModeBanner: false, // removes "DEBUG" banner from top right of app
       title: 'Student Companion',
