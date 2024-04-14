@@ -39,7 +39,10 @@ void main() {
 // this is curently where the user's photo is, this should be changed to be safer/more effective
 // TODO(any): have better pfp integration
 // TODO(any): handle photo formatting
-NetworkImage _userPhoto = const NetworkImage('https://images.unsplash.com/photo-1602466439270-97a39a1496a4?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFiaXR8ZW58MHx8MHx8fDA%3D');
+//NetworkImage _userPhoto = const NetworkImage('https://images.unsplash.com/photo-1602466439270-97a39a1496a4?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFiaXR8ZW58MHx8MHx8fDA%3D');
+// alt images for testing
+NetworkImage _userPhoto = const NetworkImage('https://images.unsplash.com/photo-1712928247899-2932f4c7dea3?q=80&w=2942&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+//NetworkImage _userPhoto = const NetworkImage('https://images.unsplash.com/photo-1712928244444444444447899-2932f4c7dea3?q=80&w=2942&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
 
 // MainApp widget
 class MainApp extends StatelessWidget {
@@ -59,7 +62,7 @@ class MainApp extends StatelessWidget {
       // (as opposed to a more complex navigator)
       routes: {
         '/': (context) => const HomeNav(title: 'Student Companion Main Page'), // homepage route
-        '/profile': (context) => const ProfileShell(), // profile route
+        '/profile': (context) => ProfileShell(_userPhoto), // profile route
       },
     );
   }

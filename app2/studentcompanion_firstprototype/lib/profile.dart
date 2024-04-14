@@ -14,10 +14,9 @@ import 'package:profile_photo/profile_photo.dart'; // package used for handling 
 
 // widget to be called that sets up profile page
 class ProfileShell extends StatelessWidget{
-  const ProfileShell({Key? key}) : super(key: key); // super delegation taken from https://pub.dev/packages/user_profile_avatar/example
+  ProfileShell(this.user_image, {Key? key,});
 
-  //
-  //= Image(NetworkImage(url))
+  NetworkImage user_image; // user profile photo to be used throught the program
 
   @override
   Widget build(BuildContext context){
@@ -28,19 +27,15 @@ class ProfileShell extends StatelessWidget{
         actions: [
             ProfilePhoto(
               totalWidth: 31, // sets diameter
+              cornerRadius: 21, // sets corner curvature
               color: Colors.black, // color to show if no image
-              image: NetworkImage('https://images.unsplash.com/photo-1602466439270-97a39a1496a4?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFiaXR8ZW58MHx8MHx8fDA%3D'), // sets image to display
-              onTap: () => print("aa"), // sets what to do on tap, test rn
+              image: user_image, // sets image to display
+              //onTap: () => print("aa"), // sets what to do on tap, test rn
             ),
             const Padding(padding: EdgeInsets.all(10)), // adds padding to the right of the icon
-
         ],
       ),
-       
+      //body: 
     );
-      
-  
-  
   }
-
 }
