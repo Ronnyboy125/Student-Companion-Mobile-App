@@ -10,8 +10,16 @@
 //
 // /////////////////////////////////////////////////////////////////
 
+// Working Notes:
+// Eli: a lot of this is similar to PiratePort, I feel like doing integration there would be good
+
+
+
 // packages
 import 'package:flutter/material.dart';
+
+// files
+import './profile.dart';
 
 // main (comment for cleaner formatting)
 void main() {
@@ -33,8 +41,11 @@ class MainApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       // creates main page
-      // since HomeNav uses widgets built under itself, rather than adjacent, having one 'page' makes most sense - Eli
-      home: const HomeNav(title: 'Student Companion Main Page'), 
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const HomeNav(title: 'Student Companion Main Page'),
+        '/profile': (context) => const ProfileShell(),
+      },
     );
   }
 }
@@ -85,8 +96,11 @@ class _HomeNavState extends State<HomeNav> {
           ),
           IconButton(
             // action pressing button takes (account tab)
+            // https://docs.flutter.dev/cookbook/navigation/named-routes
             // TODO(any): add account tab functionality
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(context, '/profile');
+            },
             icon: const Icon(Icons.account_circle),
           ),
         ],
