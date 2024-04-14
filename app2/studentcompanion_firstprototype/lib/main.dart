@@ -6,7 +6,11 @@
 // Creators: Ethan Wagner, Kiernan Martin, Eli Chapman
 // Colaborators: Dr. P. Tucker
 // 
-// Sources: <WIP>
+// Sources:
+// #  | Link                                                        | description of use
+// == | =========================================================== |=====================
+// 01 | https://docs.flutter.dev/cookbook/navigation/named-routes   | for creating simple account/notification tabs
+// 02 | https://pub.dev/packages/user_profile_avatar/example        | for work on creating a working user icon
 //
 // /////////////////////////////////////////////////////////////////
 
@@ -22,7 +26,7 @@ import 'package:table_calendar/table_calendar.dart'; // Import table_calendar pa
 // files
 import './profile.dart';
 
-// main (comment for cleaner formatting)
+// main (comment for cleaner/consistent formatting)
 void main() {
   runApp(const MainApp());
 }
@@ -96,12 +100,12 @@ class _HomeNavState extends State<HomeNav> {
         title: const Center(child: Text('Whitworth University')), // App bar title
         actions: [
           IconButton(
+            // TODO(any): add notifications tab functionality
             onPressed: () {}, // Functionality for notifications button
             icon: const Icon(Icons.notifications), // Notifications icon
           ),
           IconButton(
             // action pressing button takes (account tab)
-            // https://docs.flutter.dev/cookbook/navigation/named-routes
             // TODO(any): add account tab functionality
             onPressed: () {
               Navigator.pushNamed(context, '/profile');
