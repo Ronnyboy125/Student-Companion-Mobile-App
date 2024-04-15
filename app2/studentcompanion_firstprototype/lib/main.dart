@@ -33,9 +33,10 @@ import 'package:safe_local_storage/safe_local_storage.dart'; // copied from http
 // files
 import './profile.dart'; // profile widget
 
-// sets storage location for user data
-// currently this is set to a SPECIFIC place on my SPECIFC mac -- should be changed in future
-final storage = SafeLocalStorage('storage_test.json');
+// attempted storage below, due to security clearnace couldnt get it working
+// // sets storage location for user data
+// // currently this is set to a SPECIFIC place on my SPECIFC mac -- should be changed in future
+// final storage = SafeLocalStorage('storage_test.json');
 
 // main (comment for cleaner/consistent formatting)
 void main() {
@@ -57,12 +58,14 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     
-    // writes to storage
-    storage.write (
-      {
-        "egg" : "burg"
-      }
-    );
+    // attempted storage below, due to security clearnace couldnt get it working
+    // // edited runner files to give permission https://stackoverflow.com/questions/65458903/socketexception-connection-failed-os-error-operation-not-permitted-errno-1
+    // // writes to storage
+    // storage.write (
+    //   {
+    //     "egg" : "burg"
+    //   }
+    // );
     
     return MaterialApp(
       debugShowCheckedModeBanner: false, // removes "DEBUG" banner from top right of app
