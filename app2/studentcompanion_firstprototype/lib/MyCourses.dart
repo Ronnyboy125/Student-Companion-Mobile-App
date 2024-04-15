@@ -13,8 +13,8 @@ class MyCourses extends StatelessWidget {
 //again, if Blackboard is implemented, all of this information will be imported from there, for now just hard-coded
 @override
 Widget build(BuildContext context) {
-  return Column(
-    children: <Widget>[
+  return ListView(
+    children: [
       Card(
         margin:EdgeInsets.only(top:20, bottom:20, left: 10, right: 10),
         color: const Color.fromARGB(255, 198, 198, 198),

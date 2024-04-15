@@ -31,16 +31,18 @@ import 'package:table_calendar/table_calendar.dart'; // Import table_calendar pa
 import 'package:profile_photo/profile_photo.dart'; // package used for handling a clickable profile photo
 //import 'package:json_cache/json_cache.dart'; // copied from https://pub.dev/packages/json_cache/install
 import 'package:safe_local_storage/safe_local_storage.dart'; // copied from https://pub.dev/packages/safe_local_storage
-import 'package:my_app/InfoBoard.dart'; // import custom class
-import 'package:my_app/MyCourses.dart'; // import custom class
+// import 'package:my_app/InfoBoard.dart'; // import custom class
+// import 'package:my_app/MyCourses.dart'; // import custom class
 
 // files
 import './profile.dart'; // profile widget
+import './InfoBoard.dart'; // import custom class
+import './MyCourses.dart'; // import custom class
 
 // attempted storage below, due to security clearnace couldnt get it working
-// // sets storage location for user data
-// // currently this is set to a SPECIFIC place on my SPECIFC mac -- should be changed in future
-// final storage = SafeLocalStorage('storage_test.json');
+// sets storage location for user data
+// currently this is set to a SPECIFIC place on my SPECIFC mac -- should be changed in future
+final storage = SafeLocalStorage('storage_test.json');
 
 // main (comment for cleaner/consistent formatting)
 void main() {
@@ -59,17 +61,26 @@ NetworkImage _userPhoto = const NetworkImage('https://images.unsplash.com/photo-
 class MainApp extends StatelessWidget {
   const MainApp({Key? key});
 
+  // function to handle storing data in a file for multiple uses
+  InWidgetStorageWrite() async {
+    storage.write (
+      {
+        "egg" : "burg"
+      }
+    );
+    final data = await storage.read();
+    print(data);
+  }
+
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context)  {
     
     // attempted storage below, due to security clearnace couldnt get it working
     // // edited runner files to give permission https://stackoverflow.com/questions/65458903/socketexception-connection-failed-os-error-operation-not-permitted-errno-1
     // // writes to storage
-    // storage.write (
-    //   {
-    //     "egg" : "burg"
-    //   }
-    // );
+    //https://pub.dev/packages/safe_local_storage
+    InWidgetStorageWrite();
+    
     
     return MaterialApp(
       debugShowCheckedModeBanner: false, // removes "DEBUG" banner from top right of app
