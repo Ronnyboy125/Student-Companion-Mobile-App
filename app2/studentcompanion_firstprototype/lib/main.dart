@@ -58,10 +58,15 @@ void main() {
 NetworkImage _userPhoto = const NetworkImage('https://images.unsplash.com/photo-1712928247899-2932f4c7dea3?q=80&w=2942&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
 //NetworkImage _userPhoto = const NetworkImage('https://images.unsplash.com/photo-1712928244444444444447899-2932f4c7dea3?q=80&w=2942&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
 
-Map<String, dynamic> user_info = {};
+Map<String, dynamic> user_info = {
+  "username" : "username",
+  "email" : "email",
+  "phone" : "phone",
+  "interests" : "interests",
+};
 
 // function to handle storing data in a file for multiple uses
-InWidgetStorageWrite(String username, String email, String phone, String interests) async {
+InWidgetStorageWrite(String username, String email, String phone, String interests, Map<String, dynamic> info) async {
   storage.write (
     {
       "username" : username,
@@ -70,8 +75,8 @@ InWidgetStorageWrite(String username, String email, String phone, String interes
       "interests" : interests,
     }
   );
-  final data = await storage.read();
-  return data;
+  return info = await storage.read();
+  //return data;
 }
 // Text("atest"), // User's username
 //             Text("atest11@my.whitworth.edu"), // User's email
@@ -89,7 +94,6 @@ class MainApp extends StatelessWidget {
     // // edited runner files to give permission https://stackoverflow.com/questions/65458903/socketexception-connection-failed-os-error-operation-not-permitted-errno-1
     // // writes to storage
     //https://pub.dev/packages/safe_local_storage
-    
     
     
     return MaterialApp(
@@ -151,12 +155,14 @@ class _HomeNavState extends State<HomeNav> {
 
   // Function to handle when a bottom nav bar item is tapped
   void _onItemTapped(int index) async {
-    user_info = await InWidgetStorageWrite(
+    user_info = 
+      await InWidgetStorageWrite(
         "test",
         "test",
         "test",
         "test",
-    ); 
+        user_info
+      ); 
     setState(() {
       _selectedIndex = index; // Update the index
       
