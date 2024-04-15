@@ -8,7 +8,7 @@
 // 
 // Sources:
 // #  | Link                                                        | description of use
-// == | =========================================================== |=====================
+// -- | ----------------------------------------------------------- |--------------------------
 // 01 | https://docs.flutter.dev/cookbook/navigation/named-routes   | for creating simple account/notification tabs
 // 02 | https://pub.dev/packages/user_profile_avatar/example        | for work on creating a working user icon
 // 03 | https://stackoverflow.com/questions/76789221/how-to-add-padding-to-the-leading-and-action-icons-on-the-appbar | used to remeber padding, help with user icon spacing
@@ -21,6 +21,7 @@
 // 10 | https://stackoverflow.com/questions/53824755/flutter-dart-how-to-access-a-single-entry-in-a-map-object | help with maps
 // 11 | https://pub.dev/packages/safe_local_storage                 | used for local storage
 // 12 | https://stackoverflow.com/questions/65458903/socketexception-connection-failed-os-error-operation-not-permitted-errno-1 | used for figuring out how to give runner files appropriate permissions on devices
+// 13 | https://stackedit.io/app#                                   | clarification on markdown formatting
 //
 // /////////////////////////////////////////////////////////////////
 
