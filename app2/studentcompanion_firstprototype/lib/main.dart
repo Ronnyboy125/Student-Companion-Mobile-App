@@ -38,6 +38,7 @@ import 'package:safe_local_storage/safe_local_storage.dart'; // copied from http
 import './profile.dart'; // profile widget
 import './InfoBoard.dart'; // import custom class
 import './MyCourses.dart'; // import custom class
+import './calendar.dart'; // import custom class calendar.dart file
 
 // TODO(any): create better storage practices
 // TODO(any): confirm storage works on all devices
@@ -137,12 +138,9 @@ class _HomeNavState extends State<HomeNav> {
     ///////
     InfoBoard(),
 
-    // Calendar page with TableCalendar widget
-    TableCalendar(
-      firstDay: DateTime.utc(2020, 1, 1), // Set the first selectable day
-      lastDay: DateTime.utc(2030, 12, 31), // Set the last selectable day
-      focusedDay: DateTime.now(), // Set the initially focused day
-    ),
+    //Calendar Page for important dates for whitworth students by default 
+    //And has basic functionality to add important dates too
+    Calendar(),
 
     // TODO(any): implement ToDo List page
     // Placeholder for ToDo List page
