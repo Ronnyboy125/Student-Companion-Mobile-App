@@ -18,6 +18,7 @@
 // 07 | https://api.flutter.dev/flutter/material/ListTile-class.html| ListTile class for displaying events on Info Board page
 // 08 | https://api.flutter.dev/flutter/widgets/Column-class.html   | MyCourses and InfoBoard
 // 09 | https://docs.flutter.dev/ui/assets/assets-and-images        | Help with using image assets
+// 10 | https://stackoverflow.com/questions/53824755/flutter-dart-how-to-access-a-single-entry-in-a-map-object | help with maps
 // /////////////////////////////////////////////////////////////////
 
 // Working Notes:
@@ -57,20 +58,29 @@ void main() {
 NetworkImage _userPhoto = const NetworkImage('https://images.unsplash.com/photo-1712928247899-2932f4c7dea3?q=80&w=2942&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
 //NetworkImage _userPhoto = const NetworkImage('https://images.unsplash.com/photo-1712928244444444444447899-2932f4c7dea3?q=80&w=2942&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
 
+Map<String, dynamic> user_info = {};
+
+// function to handle storing data in a file for multiple uses
+InWidgetStorageWrite(String username, String email, String phone, String interests) async {
+  storage.write (
+    {
+      "username" : username,
+      "email" : email,
+      "phone" : phone,
+      "interests" : interests,
+    }
+  );
+  final data = await storage.read();
+  return data;
+}
+// Text("atest"), // User's username
+//             Text("atest11@my.whitworth.edu"), // User's email
+//             Text("555-555-5555"), // User's phone number
+//             Text("Whitworth CS, Example, Etc"), // list of user's interests
+
 // MainApp widget
 class MainApp extends StatelessWidget {
   const MainApp({Key? key});
-
-  // function to handle storing data in a file for multiple uses
-  InWidgetStorageWrite() async {
-    storage.write (
-      {
-        "egg" : "burg"
-      }
-    );
-    final data = await storage.read();
-    print(data);
-  }
 
   @override
   Widget build(BuildContext context)  {
@@ -79,7 +89,7 @@ class MainApp extends StatelessWidget {
     // // edited runner files to give permission https://stackoverflow.com/questions/65458903/socketexception-connection-failed-os-error-operation-not-permitted-errno-1
     // // writes to storage
     //https://pub.dev/packages/safe_local_storage
-    InWidgetStorageWrite();
+    
     
     
     return MaterialApp(
@@ -94,7 +104,7 @@ class MainApp extends StatelessWidget {
       // (as opposed to a more complex navigator)
       routes: {
         '/': (context) => const HomeNav(title: 'Student Companion Main Page'), // homepage route
-        '/profile': (context) => ProfileShell(_userPhoto), // profile route
+        '/profile': (context) => ProfileShell(_userPhoto, user_info), // profile route
       },
     );
   }
@@ -140,9 +150,16 @@ class _HomeNavState extends State<HomeNav> {
   ];
 
   // Function to handle when a bottom nav bar item is tapped
-  void _onItemTapped(int index) {
+  void _onItemTapped(int index) async {
+    user_info = await InWidgetStorageWrite(
+        "test",
+        "test",
+        "test",
+        "test",
+    ); 
     setState(() {
       _selectedIndex = index; // Update the index
+      
     });
   }
 
