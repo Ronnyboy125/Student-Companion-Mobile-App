@@ -3,7 +3,7 @@
 //
 // Name: Student Companion App
 // Purpose: An app meant to help college students organize the multiple types of events/activities/assignments of college life
-// Creators: Ethan Wagner, Kiernan Martin, Eli Chapman
+// App2 Creators: Ethan Wagner, Kiernan Martin, Eli Chapman
 // Colaborators: Dr. P. Tucker
 // 
 // Sources:
@@ -23,6 +23,8 @@
 // 12 | https://stackoverflow.com/questions/65458903/socketexception-connection-failed-os-error-operation-not-permitted-errno-1 | used for figuring out how to give runner files appropriate permissions on devices
 //
 // /////////////////////////////////////////////////////////////////
+
+// TODO: change app icon & title in runners
 
 // packages
 import 'package:flutter/material.dart'; // general helpful material components for flutter
@@ -151,14 +153,16 @@ class _HomeNavState extends State<HomeNav> {
     // TODO(any): create specific function/widget for handling profile information updating
     // currently this just updates user info to test when a button is pushed, 
     // in future this should most likely be in its own stateful widget
-    user_info = 
-      await InWidgetStorageWrite(
-        "test",
-        "test",
-        "test",
-        "test",
-        user_info
-      ); 
+    // TODO(any): get this working on all devices
+    // currently this works on my mac, but not my iphone, b/c of security permissions. uncomment to test/fix
+    // user_info = 
+    //   await InWidgetStorageWrite(
+    //     "test",
+    //     "test",
+    //     "test",
+    //     "test",
+    //     user_info
+    //   ); 
     setState(() {
       _selectedIndex = index; // Update the index
       
