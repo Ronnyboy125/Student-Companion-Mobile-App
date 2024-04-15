@@ -6,14 +6,15 @@
 //
 // /////////////////////////////////////////////////////////////////
 
-//temp sources
-//https://pub.dev/packages/json_cache
+// unused sources
+// https://pub.dev/packages/json_cache
 
 // packages
 import 'package:flutter/material.dart';
 import 'package:profile_photo/profile_photo.dart'; // package used for handling a clickable profile photo
     
 // widget to be called that sets up profile page
+// TODO: resolve @immutable formatting issue
 class ProfileShell extends StatelessWidget{
   ProfileShell(this.user_image, this.user_info_map, {Key? key,});
 
@@ -49,7 +50,7 @@ class ProfileShell extends StatelessWidget{
               ),
             // TODO(any): replace text widgets with more complex display widgets
             const Padding(padding: EdgeInsets.all(10)), // adds padding to the bottom of the icon
-            // https://stackoverflow.com/questions/53824755/flutter-dart-how-to-access-a-single-entry-in-a-map-object // for reminder of map formatting
+            // https://stackoverflow.com/questions/53824755/flutter-dart-how-to-access-a-single-entry-in-a-map-object used for reminder of map formatting
             Text(user_info_map["username"]!), // User's username
             Text(user_info_map["email"]!), // User's email
             Text(user_info_map["phone"]!), // User's phone number

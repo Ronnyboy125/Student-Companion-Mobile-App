@@ -2,7 +2,7 @@
 // Project/File Comment
 //
 // Name: Student Companion App
-// Purpose <WIP>
+// Purpose: An app meant to help college students organize the multiple types of events/activities/assignments of college life
 // Creators: Ethan Wagner, Kiernan Martin, Eli Chapman
 // Colaborators: Dr. P. Tucker
 // 
@@ -19,30 +19,28 @@
 // 08 | https://api.flutter.dev/flutter/widgets/Column-class.html   | MyCourses and InfoBoard
 // 09 | https://docs.flutter.dev/ui/assets/assets-and-images        | Help with using image assets
 // 10 | https://stackoverflow.com/questions/53824755/flutter-dart-how-to-access-a-single-entry-in-a-map-object | help with maps
+// 11 | https://pub.dev/packages/safe_local_storage                 | used for local storage
+// 12 | https://stackoverflow.com/questions/65458903/socketexception-connection-failed-os-error-operation-not-permitted-errno-1 | used for figuring out how to give runner files appropriate permissions on devices
+//
 // /////////////////////////////////////////////////////////////////
-
-// Working Notes:
-// Eli: a lot of this is similar to PiratePort, I feel like doing integration there would be good
-
-
 
 // packages
 import 'package:flutter/material.dart'; // general helpful material components for flutter
 import 'package:table_calendar/table_calendar.dart'; // Import table_calendar package
 import 'package:profile_photo/profile_photo.dart'; // package used for handling a clickable profile photo
-//import 'package:json_cache/json_cache.dart'; // copied from https://pub.dev/packages/json_cache/install
+//import 'package:json_cache/json_cache.dart'; // copied from https://pub.dev/packages/json_cache/install; unused
 import 'package:safe_local_storage/safe_local_storage.dart'; // copied from https://pub.dev/packages/safe_local_storage
-// import 'package:my_app/InfoBoard.dart'; // import custom class
-// import 'package:my_app/MyCourses.dart'; // import custom class
 
 // files
 import './profile.dart'; // profile widget
 import './InfoBoard.dart'; // import custom class
 import './MyCourses.dart'; // import custom class
 
-// attempted storage below, due to security clearnace couldnt get it working
+// TODO(any): create better storage practices
+// TODO(any): confirm storage works on all devices
 // sets storage location for user data
-// currently this is set to a SPECIFIC place on my SPECIFC mac -- should be changed in future
+// this should be changed to be more clean, potentially iterative based on user's login credentials
+// also network storage should be looked at (for safety and effecientcy)
 final storage = SafeLocalStorage('storage_test.json');
 
 // main (comment for cleaner/consistent formatting)
@@ -53,11 +51,16 @@ void main() {
 // this is curently where the user's photo is, this should be changed to be safer/more effective
 // TODO(any): have better pfp integration
 // TODO(any): handle photo formatting
-//NetworkImage _userPhoto = const NetworkImage('https://images.unsplash.com/photo-1602466439270-97a39a1496a4?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFiaXR8ZW58MHx8MHx8fDA%3D');
+NetworkImage _userPhoto = const NetworkImage('https://images.unsplash.com/photo-1602466439270-97a39a1496a4?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFiaXR8ZW58MHx8MHx8fDA%3D');
 // alt images for testing
-NetworkImage _userPhoto = const NetworkImage('https://images.unsplash.com/photo-1712928247899-2932f4c7dea3?q=80&w=2942&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
+//NetworkImage _userPhoto = const NetworkImage('https://images.unsplash.com/photo-1712928247899-2932f4c7dea3?q=80&w=2942&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
 //NetworkImage _userPhoto = const NetworkImage('https://images.unsplash.com/photo-1712928244444444444447899-2932f4c7dea3?q=80&w=2942&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
 
+// TODO(any): load user info from file
+// TODO(any): handle user info non-publically
+// sets user_info to defaults to avoid some null errors, should probably be dealt with more cleanly,
+// and these should be loaded from a saved file, as opposed to just saving to file
+// Map of user info to be locally saved
 Map<String, dynamic> user_info = {
   "username" : "username",
   "email" : "email",
@@ -67,6 +70,7 @@ Map<String, dynamic> user_info = {
 
 // function to handle storing data in a file for multiple uses
 InWidgetStorageWrite(String username, String email, String phone, String interests, Map<String, dynamic> info) async {
+  // writes to storage
   storage.write (
     {
       "username" : username,
@@ -75,27 +79,16 @@ InWidgetStorageWrite(String username, String email, String phone, String interes
       "interests" : interests,
     }
   );
+  // returns modified map to be copied over original
   return info = await storage.read();
-  //return data;
 }
-// Text("atest"), // User's username
-//             Text("atest11@my.whitworth.edu"), // User's email
-//             Text("555-555-5555"), // User's phone number
-//             Text("Whitworth CS, Example, Etc"), // list of user's interests
 
 // MainApp widget
 class MainApp extends StatelessWidget {
   const MainApp({Key? key});
 
   @override
-  Widget build(BuildContext context)  {
-    
-    // attempted storage below, due to security clearnace couldnt get it working
-    // // edited runner files to give permission https://stackoverflow.com/questions/65458903/socketexception-connection-failed-os-error-operation-not-permitted-errno-1
-    // // writes to storage
-    //https://pub.dev/packages/safe_local_storage
-    
-    
+  Widget build(BuildContext context){
     return MaterialApp(
       debugShowCheckedModeBanner: false, // removes "DEBUG" banner from top right of app
       title: 'Student Companion',
@@ -130,9 +123,8 @@ class _HomeNavState extends State<HomeNav> {
 
   // List of content widgets for each tab
   static final List<Widget> _widgetOptions = <Widget>[
-    ///////
-    //Info on courses(similar to blackboard info)
-    ///////
+
+    // Info on courses(similar to blackboard info)
     MyCourses(),
 
     ///////
@@ -149,12 +141,16 @@ class _HomeNavState extends State<HomeNav> {
       focusedDay: DateTime.now(), // Set the initially focused day
     ),
 
+    // TODO(any): implement ToDo List page
     // Placeholder for ToDo List page
     Text('ToDo List Page'),
   ];
 
   // Function to handle when a bottom nav bar item is tapped
   void _onItemTapped(int index) async {
+    // TODO(any): create specific function/widget for handling profile information updating
+    // currently this just updates user info to test when a button is pushed, 
+    // in future this should most likely be in its own stateful widget
     user_info = 
       await InWidgetStorageWrite(
         "test",
@@ -181,7 +177,6 @@ class _HomeNavState extends State<HomeNav> {
             icon: const Icon(Icons.notifications), // Notifications icon
           ),
           // action pressing button takes (account tab)
-          // TODO(any): add account tab functionality
           ProfilePhoto(
               totalWidth: 31, // sets diameter
               cornerRadius: 20, // sets how curved the corners are
