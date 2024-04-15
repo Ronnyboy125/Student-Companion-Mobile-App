@@ -141,7 +141,7 @@ class _HomeNavState extends State<HomeNav> {
           ProfilePhoto(
               totalWidth: 31, // sets diameter
               cornerRadius: 20, // sets how curved the corners are
-              color: const Color.fromARGB(255, 61, 61, 61), // color to show if no image
+              color: Colors.black, // color to show if no image
               image: _userPhoto, // sets image to display
               // sets what to do on tap, switched to profile page
               onTap: () {

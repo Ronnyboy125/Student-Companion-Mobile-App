@@ -38,8 +38,16 @@ class ProfileShell extends StatelessWidget{
             const Padding(padding: EdgeInsets.all(10)), // adds padding to the right of the icon
         ],
       ),
-      // TODO(any): add user information to body
-      //body: 
+      // TODO(any): integrate storage & modification of user data
+      body: const Column(
+        children: [
+          // TODO(any): replace text widgets with more complex display widgets
+          Text("atest"), // User's username (assumedly of form atest11)
+          Text("atest11@my.whitworth.edu"), // User's email
+          Text("555-555-5555"), // User's phone number
+          Text("Whitworth CS, Example, Etc"), // list of user's interests
+        ],
+      )
     );
   }
 }
