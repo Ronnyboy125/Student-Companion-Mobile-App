@@ -15,7 +15,9 @@
 // 04 | https://docs.flutter.dev/ui/assets/assets-and-images        | used for remembering how images work
 // 05 | https://pub.dev/packages/profile_photo                      | package for handling profile photo
 // 06 | https://pub.dev/packages/user_profile_avatar/example        | used code for handling super delegation
-//
+// 07 | https://api.flutter.dev/flutter/material/ListTile-class.html| ListTile class for displaying events on Info Board page
+// 08 | https://api.flutter.dev/flutter/widgets/Column-class.html   | MyCourses and InfoBoard
+// 09 | https://docs.flutter.dev/ui/assets/assets-and-images        | Help with using image assets
 // /////////////////////////////////////////////////////////////////
 
 // Working Notes:
@@ -29,6 +31,8 @@ import 'package:table_calendar/table_calendar.dart'; // Import table_calendar pa
 import 'package:profile_photo/profile_photo.dart'; // package used for handling a clickable profile photo
 //import 'package:json_cache/json_cache.dart'; // copied from https://pub.dev/packages/json_cache/install
 import 'package:safe_local_storage/safe_local_storage.dart'; // copied from https://pub.dev/packages/safe_local_storage
+import 'package:my_app/InfoBoard.dart'; // import custom class
+import 'package:my_app/MyCourses.dart'; // import custom class
 
 // files
 import './profile.dart'; // profile widget
@@ -101,11 +105,17 @@ class _HomeNavState extends State<HomeNav> {
 
   // List of content widgets for each tab
   static final List<Widget> _widgetOptions = <Widget>[
-    // Placeholder for My Courses page
-    Text('My Courses Page'),
+    ///////
+    //Info on courses(similar to blackboard info)
+    ///////
+    MyCourses(),
 
-    // Placeholder for Information Board page
-    Text('Information Board Page'),
+    ///////
+    //School Events
+    //Club Events
+    //Personal Events
+    ///////
+    InfoBoard(),
 
     // Calendar page with TableCalendar widget
     TableCalendar(
