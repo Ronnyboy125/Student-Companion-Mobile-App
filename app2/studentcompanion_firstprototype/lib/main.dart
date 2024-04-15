@@ -51,7 +51,7 @@ void main() {
 }
 
 // this is curently where the user's photo is, this should be changed to be safer/more effective
-// TODO(any): have better pfp integration
+// TODO(any): have better pfp storage integration
 // TODO(any): handle photo formatting
 NetworkImage _userPhoto = const NetworkImage('https://images.unsplash.com/photo-1602466439270-97a39a1496a4?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFiaXR8ZW58MHx8MHx8fDA%3D');
 // alt images for testing
