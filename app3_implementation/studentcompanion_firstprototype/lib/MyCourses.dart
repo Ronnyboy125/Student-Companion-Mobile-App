@@ -13,7 +13,8 @@ class MyCourses extends StatelessWidget {
 //again, if Blackboard is implemented, all of this information will be imported from there, for now just hard-coded
 @override
 Widget build(BuildContext context) {
-  return ListView(
+  return Scaffold(
+  body : Column(
     children: [
       Card(
         margin:EdgeInsets.only(top:20, bottom:20, left: 10, right: 10),
@@ -78,7 +79,10 @@ Widget build(BuildContext context) {
           subtitle: Text('Professor: Dr. LastName\nTime: 2:00 PM - 3:30 PM\nLocation: Backroom 0'),
         ),
       ),
+      ElevatedButton(onPressed: (){}, child: const Icon(Icons.add), style: ButtonStyle(),)
     ],
+  )
+  
   );
 }
 }
