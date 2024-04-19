@@ -30,7 +30,7 @@ class _CalendarState extends State<Calendar> {
   @override
   Widget build(BuildContext context) {
     return EventCalendar(
-      headerOptions: HeaderOptions(weekDayStringType: WeekDayStringTypes.SHORT) ,
+      headerOptions: HeaderOptions(weekDayStringType: WeekDayStringTypes.SHORT),
       calendarType: CalendarType.GREGORIAN,
       calendarLanguage: 'en',
       events: [
@@ -44,14 +44,19 @@ class _CalendarState extends State<Calendar> {
           ),
         ),
         Event(
-          child: const Text ('LM4'),
-          dateTime: CalendarDateTime(
-            year:2024,
-            month: 04,
-            day: 10,
-            calendarType: CalendarType.GREGORIAN
-          )
-        )
+            child: const Text('LM4'),
+            dateTime: CalendarDateTime(
+                year: 2024,
+                month: 04,
+                day: 10,
+                calendarType: CalendarType.GREGORIAN)),
+        Event(
+            child: const Text('Final Exam'),
+            dateTime: CalendarDateTime(
+                calendarType: CalendarType.GREGORIAN,
+                year: 2024,
+                month: 04,
+                day: 29))
       ],
     );
   }
