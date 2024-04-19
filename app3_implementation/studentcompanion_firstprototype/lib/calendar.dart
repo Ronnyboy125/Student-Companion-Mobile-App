@@ -30,18 +30,28 @@ class _CalendarState extends State<Calendar> {
   @override
   Widget build(BuildContext context) {
     return EventCalendar(
+      headerOptions: HeaderOptions(weekDayStringType: WeekDayStringTypes.SHORT) ,
       calendarType: CalendarType.GREGORIAN,
       calendarLanguage: 'en',
       events: [
         Event(
-          child: const Text('Laravel Event'),
+          child: const Text('App2'),
           dateTime: CalendarDateTime(
             year: 2024,
             month: 04,
             day: 19,
-            calendarType: CalendarType.JALALI,
+            calendarType: CalendarType.GREGORIAN,
           ),
         ),
+        Event(
+          child: const Text ('LM4'),
+          dateTime: CalendarDateTime(
+            year:2024,
+            month: 04,
+            day: 10,
+            calendarType: CalendarType.GREGORIAN
+          )
+        )
       ],
     );
   }
