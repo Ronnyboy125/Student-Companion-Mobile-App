@@ -6,83 +6,130 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-// widget to be called that displays events and info
-class MyCourses extends StatelessWidget {
-  const MyCourses({Key? key}): super(key:key); // super delegation taken from https://pub.dev/packages/user_profile_avatar/example
+class MyCourses extends StatefulWidget {
+  const MyCourses({Key? key}) : super(key: key);
 
-//again, if Blackboard is implemented, all of this information will be imported from there, for now just hard-coded
-@override
-Widget build(BuildContext context) {
-  return Scaffold(
-  body : Column(
-    children: [
-      Card(
-        margin:EdgeInsets.only(top:20, bottom:20, left: 10, right: 10),
-        color: const Color.fromARGB(255, 198, 198, 198),
-        child: ListTile(
-          leading: FractionallySizedBox(
-              widthFactor: 0.4,
-              heightFactor: 1.6,
-              child: Image.asset('assets/book.jpg', fit: BoxFit.fill),
-            ),
-          contentPadding: EdgeInsets.all(10),
-          title: Text('CS-670'),
-          titleTextStyle: TextStyle(fontWeight: FontWeight.w500, color: Colors.black, fontSize: 18),
-          subtitle: Text('Professor: Dr. Pr. Sir Whitwortian McQuilkin IV\nTime: 4:00 AM - 10:30 AM\nLocation: EJ 401'),
-        ),
-      ),
-
-      Card(
-        margin:EdgeInsets.only(top:20, bottom:20, left: 10, right: 10),
-        color: const Color.fromARGB(255, 198, 198, 198),
-        child: ListTile(
-          leading: FractionallySizedBox(
-              widthFactor: 0.4,
-              heightFactor: 1.6,
-              child: Image.asset('assets/example.jpg', fit: BoxFit.fill),
-            ),
-          contentPadding: EdgeInsets.all(10),
-          title: Text('Example'),
-          titleTextStyle: TextStyle(fontWeight: FontWeight.w500, color: Colors.black, fontSize: 18),
-          subtitle: Text('Professor: Dr. Example\nTime: 11:00 AM - 12:30 PM\nLocation: Ex. 202'),
-        ),
-      ),
-
-      Card(
-        margin:EdgeInsets.only(top:20, bottom:20, left: 10, right: 10),
-        color: const Color.fromARGB(255, 198, 198, 198),
-        child: ListTile(
-          leading: FractionallySizedBox(
-              widthFactor: 0.4,
-              heightFactor: 1.6,
-              child: Image.asset('assets/example2.jpg', fit: BoxFit.fill),
-            ),
-          contentPadding: EdgeInsets.all(10),
-          title: Text('Example2'),
-          titleTextStyle: TextStyle(fontWeight: FontWeight.w500, color: Colors.black, fontSize: 18),
-          subtitle: Text('Professor: Dr. Filler\nTime: 2:00 PM - 3:30 PM\nLocation: etc. 303'),
-        ),
-      ),
-
-      Card(
-        margin:EdgeInsets.only(top:20, bottom:20, left: 10, right: 10),
-        color: const Color.fromARGB(255, 198, 198, 198),
-        child: ListTile(
-          leading: FractionallySizedBox(
-              widthFactor: 0.4,
-              heightFactor: 1.6,
-              child: Image.asset('assets/backrooms.jpg', fit: BoxFit.fill),
-            ),
-          contentPadding: EdgeInsets.all(10),
-          title: Text('Example3'),
-          titleTextStyle: TextStyle(fontWeight: FontWeight.w500, color: Colors.black, fontSize: 18),
-          subtitle: Text('Professor: Dr. LastName\nTime: 2:00 PM - 3:30 PM\nLocation: Backroom 0'),
-        ),
-      ),
-      ElevatedButton(onPressed: (){}, child: const Icon(Icons.add), style: ButtonStyle(),)
-    ],
-  )
-  
-  );
+  @override
+  _MyCoursesState createState() => _MyCoursesState();
 }
+
+class Course {
+  String? name;
+  String? details;
+
+  Course({required String name, required String details}) {
+    this.name = name;
+    this.details = details;
+  }
+}
+
+class _MyCoursesState extends State<MyCourses> {
+  List<Course> courses = []; // List to store courses
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: [
+          ElevatedButton(
+            onPressed: () {
+              _addCourseDialog(context); // Open the dialog to add a new course
+            },
+            child: const Icon(Icons.add),
+            style: const ButtonStyle(
+                backgroundColor: MaterialStatePropertyAll(Colors.blue),
+                foregroundColor: MaterialStatePropertyAll(Colors.black)),
+          ),
+          Expanded(
+            child: ListView.builder(
+              itemCount: courses.length,
+              itemBuilder: (context, index) {
+                return Card(
+                  margin:
+                      EdgeInsets.only(top: 20, bottom: 20, left: 10, right: 10),
+                  color: const Color.fromARGB(255, 198, 198, 198),
+                  child: ListTile(
+                    leading: FractionallySizedBox(
+                      widthFactor: 0.4,
+                      heightFactor: 1.6,
+                      child: Image.asset('assets/book.jpg', fit: BoxFit.fill),
+                    ),
+                    contentPadding: EdgeInsets.all(10),
+                    title: Text(courses[index].name!),
+                    titleTextStyle: TextStyle(
+                        fontWeight: FontWeight.w500,
+                        color: Colors.black,
+                        fontSize: 18),
+                    subtitle: Text(courses[index].details!),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  // https://api.flutter.dev/flutter/material/AlertDialog-class.html
+  // https://docs.flutter.dev/cookbook/forms/text-field-changes
+  Future<void> _addCourseDialog(BuildContext context) async {
+    TextEditingController nameController = TextEditingController();
+    TextEditingController detailsController = TextEditingController();
+
+    return showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('Add Course'),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              TextField(
+                controller: nameController,
+                decoration: InputDecoration(
+                    labelText: 'Course Name',
+                    hintStyle: TextStyle(color: Colors.blue, fontSize: 18)),
+              ),
+              TextField(
+                controller: detailsController,
+                decoration: InputDecoration(labelText: 'Course Details',
+                    hintStyle: TextStyle(color: Colors.blue, fontSize: 18)),
+              ),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              child: Text(
+                'Cancel',
+                style: TextStyle(color: Colors.blue, fontSize: 18),
+              ),
+            ),
+            TextButton(
+              onPressed: () {
+                setState(() {
+                  courses.add(
+                    Course(
+                      name: nameController.text,
+                      details: detailsController.text,
+                    ),
+                  );
+                });
+                Navigator.of(context).pop();
+              },
+              child: Text(
+                'Add',
+                style: TextStyle(color: Colors.blue, fontSize: 18),
+              ),
+            ),
+          ],
+          backgroundColor: Colors.white,
+          titleTextStyle: TextStyle(fontSize: 40, color: Colors.blue),
+        );
+      },
+    );
+  }
 }
