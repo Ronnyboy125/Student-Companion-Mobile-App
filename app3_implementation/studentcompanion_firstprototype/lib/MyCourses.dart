@@ -44,23 +44,61 @@ class _MyCoursesState extends State<MyCourses> {
             child: ListView.builder(
               itemCount: courses.length,
               itemBuilder: (context, index) {
-                return Card(
-                  margin:
-                      EdgeInsets.only(top: 20, bottom: 20, left: 10, right: 10),
-                  color: const Color.fromARGB(255, 198, 198, 198),
-                  child: ListTile(
-                    leading: FractionallySizedBox(
-                      widthFactor: 0.4,
-                      heightFactor: 1.6,
-                      child: Image.asset('assets/book.jpg', fit: BoxFit.fill),
+                return Dismissible(
+                  key: Key(index.toString()),
+                  onDismissed: (direction) {
+                    setState(() {
+                      courses.removeAt(index);
+                    });
+                  },
+                  // Show a red background as the item is swiped away.
+                  background: Container(color: Colors.red),
+                  confirmDismiss: (direction) async {
+                    return await showDialog(
+                      context: context,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          title: const Text("Confirm"),
+                          content: Text(
+                              "Are you sure you wish to delete ${courses[index].name}?"),
+                          actions: <Widget>[
+                            TextButton(
+                                onPressed: () =>
+                                    Navigator.of(context).pop(true),
+                                child: const Text(
+                                  "DELETE",
+                                  style: TextStyle(color: Colors.blue),
+                                )),
+                            TextButton(
+                              onPressed: () => Navigator.of(context).pop(false),
+                              child: const Text(
+                                "CANCEL",
+                                style: TextStyle(color: Colors.blue),
+                              ),
+                            ),
+                          ],
+                        );
+                      },
+                    );
+                  },
+                  child: Card(
+                    margin: EdgeInsets.only(
+                        top: 20, bottom: 20, left: 10, right: 10),
+                    color: const Color.fromARGB(255, 198, 198, 198),
+                    child: ListTile(
+                      leading: FractionallySizedBox(
+                        widthFactor: 0.4,
+                        heightFactor: 1.6,
+                        child: Image.asset('assets/book.jpg', fit: BoxFit.fill),
+                      ),
+                      contentPadding: EdgeInsets.all(10),
+                      title: Text(courses[index].name!),
+                      titleTextStyle: TextStyle(
+                          fontWeight: FontWeight.w500,
+                          color: Colors.black,
+                          fontSize: 18),
+                      subtitle: Text(courses[index].details!),
                     ),
-                    contentPadding: EdgeInsets.all(10),
-                    title: Text(courses[index].name!),
-                    titleTextStyle: TextStyle(
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black,
-                        fontSize: 18),
-                    subtitle: Text(courses[index].details!),
                   ),
                 );
               },
@@ -93,7 +131,8 @@ class _MyCoursesState extends State<MyCourses> {
               ),
               TextField(
                 controller: detailsController,
-                decoration: InputDecoration(labelText: 'Course Details',
+                decoration: InputDecoration(
+                    labelText: 'Course Details',
                     hintStyle: TextStyle(color: Colors.blue, fontSize: 18)),
               ),
             ],

@@ -24,12 +24,12 @@ main() async {
   // using ic03 for help (pt C)
 
   // parses info from a url, waits for that response
-  http.Response response = await http.get(Uri.parse("https://pirateport.whitworth.edu/"));
+  http.Response response = await http.get(Uri.parse("https://news.whitworth.edu/"));
   Document document = parser.parse(response.body);
 
   // copied from ic3_c
   // Use the document object to access each element of the webpage
-  document.getElementsByTagName('div').forEach((Element element) async{
+  document.getElementsByTagName('a').forEach((Element element) async{
         
         // var url2 = Uri.parse(element.attributes['href']!);
         // response2 = await http.get(url2);
