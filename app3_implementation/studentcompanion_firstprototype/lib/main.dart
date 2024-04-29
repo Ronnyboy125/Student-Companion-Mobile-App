@@ -39,6 +39,7 @@ import './profile.dart'; // profile widget
 import './InfoBoard.dart'; // import custom class
 import './MyCourses.dart'; // import custom class
 import './calendar.dart'; // import custom class calendar.dart file
+import './toDoList.dart';
 
 // TODO(any): create better storage practices
 // TODO(any): confirm storage works on all devices
@@ -106,6 +107,7 @@ class MainApp extends StatelessWidget {
       routes: {
         '/': (context) => const HomeNav(title: 'Student Companion Main Page'), // homepage route
         '/profile': (context) => ProfileShell(_userPhoto, user_info), // profile route
+
       },
     );
   }
@@ -144,7 +146,7 @@ class _HomeNavState extends State<HomeNav> {
 
     // TODO(any): implement ToDo List page
     // Placeholder for ToDo List page
-    Text('ToDo List Page'),
+    ToDoListPage(),
   ];
 
   // Function to handle when a bottom nav bar item is tapped
