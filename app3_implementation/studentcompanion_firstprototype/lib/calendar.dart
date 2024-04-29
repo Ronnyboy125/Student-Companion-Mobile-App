@@ -56,7 +56,14 @@ class _CalendarState extends State<Calendar> {
                 calendarType: CalendarType.GREGORIAN,
                 year: 2024,
                 month: 04,
-                day: 29))
+                day: 29)),
+        Event(
+          child:const Text('Presentation Day'),
+          dateTime: CalendarDateTime(
+            calendarType: CalendarType.GREGORIAN,
+            year: 2024,
+            month: 04,
+            day: 29))        
       ],
     );
   }
