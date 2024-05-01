@@ -9,11 +9,17 @@ The overall goal of this assignment is to make progress towards your final appli
 
 ## Presentation - Use the following questions to develop your 5 minute APP 3 presentation
 0. How has your team dealt with the remote work aspect? What challenges have you faced and overcome?
+   Behzad
 1. Did your team listen well to one another? Motivate each other? Has your team made good team decisions so far?
+   Matheus
 2. Have you team members shown passion/interest/enthusiasm for what you are building?
+   Ethan
 3. What should your team keep doing well?
+   Matheus
 4. What improvements can your team make to avoid future issues?
+   Behzad
 5. Are your team objectives clear, and are you making good progress?
+   Ethan
 
 ## Evaluation
 You will be evaluated on:
