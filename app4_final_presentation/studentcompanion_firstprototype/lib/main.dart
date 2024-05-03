@@ -40,7 +40,6 @@ import './InfoBoard.dart'; // import custom class
 import './MyCourses.dart'; // import custom class
 import './calendar.dart'; // import custom class calendar.dart file
 import './toDoList.dart';
-
 // TODO(any): create better storage practices
 // TODO(any): confirm storage works on all devices
 // sets storage location for user data
@@ -176,6 +175,10 @@ class _HomeNavState extends State<HomeNav> {
       appBar: AppBar(
         title: const Center(child: Text('Whitworth University')), // App bar title
         actions: [
+          IconButton(
+            onPressed: () {}, // Functionality for notifications button
+            icon: const Icon(Icons.add), // Notifications icon
+          ),
           IconButton(
             // TODO(any): add notifications tab functionality
             onPressed: () {}, // Functionality for notifications button
