@@ -1,56 +1,42 @@
-// Purpose: file containing widgets for Calendar page
-// ignore_for_file: library_private_types_in_public_api, depend_on_referenced_packages
-
-import 'dart:js';
-
 import 'package:flutter/material.dart';
-import 'package:flutter_event_calendar/flutter_event_calendar.dart';
-
+import 'package:table_calendar/table_calendar.dart';
 
 class Calendar extends StatefulWidget {
-  const Calendar({super.key});
+  const Calendar({Key? key}) : super(key: key);
 
   @override
   _CalendarState createState() => _CalendarState();
 }
 
 class _CalendarState extends State<Calendar> {
-  Map <DateTime, List <Event>> events = {};
-  late DateTime _today; // Variable to store the current date
-  // ignore: unused_field
-  late DateTime _aWeekFromNow; // Variable to store the date a week from now
-
-  @override
-  void initState() {
-    super.initState();
-    // Initialize the current date
-    _today = DateTime.now();
-    // Initialize the date a week from now
-    _aWeekFromNow = _today.add(const Duration(days: 7));
-  }
+  DateTime today = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
-    return 
-    EventCalendar(
-      headerOptions: HeaderOptions(weekDayStringType: WeekDayStringTypes.SHORT),
-      calendarType: CalendarType.GREGORIAN,
-      calendarLanguage: 'en',
-      
-      events: [
-        Event(
-          child: const Text('App2'),
-          dateTime: CalendarDateTime(
-            year: 2024,
-            month: 04,
-            day: 19,
-            calendarType: CalendarType.GREGORIAN,
+    return Scaffold(
+      body: calendar(),
+    );}
+      Widget calendar(){
+        return Column(
+        children: [
+          TableCalendar(
+            locale: "en_US",
+            focusedDay: today,
+            firstDay: DateTime.utc(2012, 1, 1),
+            lastDay: DateTime.utc(2030, 12, 31),
+            headerStyle: const HeaderStyle(formatButtonVisible: false),
+            // onDaySelected: (selectedDay, focusedDay) {
+            //   setState(() {
+            //     _selectedDay = selectedDay;
+            //   });
+            // },
           ),
-        ),
-      ],
-    );
+          // You can add your event list or other widgets here
+        ],
+      );
   }
 }
+
 
 /*
 
