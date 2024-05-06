@@ -96,7 +96,7 @@ class _CalendarState extends State<Calendar> {
                   decoration: BoxDecoration(border: Border.all(), borderRadius: BorderRadius.circular(12)),
                   child:ListTile(
                     onTap: ()=> print(""), 
-                  title: Text('${value[index]}'),)
+                  title: Text(value[index].title,))
                 );
               }
               );
