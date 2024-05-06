@@ -31,7 +31,6 @@
 import 'package:flutter/material.dart'; // general helpful material components for flutter
 import 'package:table_calendar/table_calendar.dart'; // Import table_calendar package
 import 'package:profile_photo/profile_photo.dart'; // package used for handling a clickable profile photo
-//import 'package:json_cache/json_cache.dart'; // copied from https://pub.dev/packages/json_cache/install; unused
 import 'package:safe_local_storage/safe_local_storage.dart'; // copied from https://pub.dev/packages/safe_local_storage
 
 // files
@@ -72,21 +71,22 @@ Map<String, dynamic> user_info = {
   "interests" : "interests",
 };
 
-// function to handle storing data in a file for multiple uses
-InWidgetStorageWrite(String username, String email, String phone, String interests, Map<String, dynamic> info) async {
-  // writes to storage
-  storage.write (
-    {
+// Function to handle storing data in a file for multiple uses
+// ignore: non_constant_identifier_names, use_function_type_syntax_for_parameters
+Future<void> inWidgetStorageWrite(String username, String email, String phone, String interests, Map<String, dynamic> info) async {
+  try {
+    // Writes to storage
+    await storage.write({
       "username" : username,
       "email" : email,
       "phone" : phone,
       "interests" : interests,
-    }
-  );
-  // returns modified map to be copied over original
-  return info = await storage.read();
+    });
+    print("Data successfully written to storage");
+  } catch (e) {
+    print("Error writing data to storage: $e");
+  }
 }
-
 // MainApp widget
 class MainApp extends StatelessWidget {
   const MainApp({Key? key});
@@ -132,19 +132,10 @@ class _HomeNavState extends State<HomeNav> {
     // Info on courses(similar to blackboard info)
     MyCourses(),
 
-    ///////
-    //School Events
-    //Club Events
-    //Personal Events
-    ///////
     InfoBoard(),
 
-    //Calendar Page for important dates for whitworth students by default 
-    //And has basic functionality to add important dates too
     Calendar(),
 
-    // TODO(any): implement ToDo List page
-    // Placeholder for ToDo List page
     ToDoListPage(),
   ];
 
@@ -175,15 +166,6 @@ class _HomeNavState extends State<HomeNav> {
       appBar: AppBar(
         title: const Center(child: Text('Whitworth University')), // App bar title
         actions: [
-          IconButton(
-            onPressed: () {}, // Functionality for notifications button
-            icon: const Icon(Icons.add), // Notifications icon
-          ),
-          IconButton(
-            // TODO(any): add notifications tab functionality
-            onPressed: () {}, // Functionality for notifications button
-            icon: const Icon(Icons.notifications), // Notifications icon
-          ),
           // action pressing button takes (account tab)
           ProfilePhoto(
               totalWidth: 31, // sets diameter

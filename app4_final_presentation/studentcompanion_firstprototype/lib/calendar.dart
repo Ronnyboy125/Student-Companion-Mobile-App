@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:studentcompanion/main.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'event.dart';
 
@@ -59,6 +60,7 @@ class _CalendarState extends State<Calendar> {
                         events.addAll({
                           _selectedDay!: [Event(_userinput.text)]
                         });
+                        storage.write(Event(_userinput.text));
                         Navigator.of(context).pop(); //storing the event
                         _selectedEvents.value = _getEventsForDay(_selectedDay!);
                         _userinput.clear();
