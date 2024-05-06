@@ -25,9 +25,13 @@ class _CalendarState extends State<Calendar> {
   }
 
   void _onDaySelected(DateTime day, DateTime focusedDay) {
-    setState(() {
+    if(isSameDay(_selectedDay, today)) {
+      setState(() {
       today = day;
+      _selectedDay = today;
+      _selectedEvents.value = _getEventsForDay(today);
     });
+    }
   }
 
 
@@ -55,6 +59,7 @@ class _CalendarState extends State<Calendar> {
                       _selectedDay!: [Event(_userinput.text)]
                       });
                     Navigator.of(context).pop(); //storing the event
+                    _selectedEvents.value = _getEventsForDay(_selectedDay!);
                   } , child: const Text("Submit"))
                 ],
               );
