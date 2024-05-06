@@ -25,19 +25,19 @@ class _CalendarState extends State<Calendar> {
   }
 
   void _onDaySelected(DateTime day, DateTime focusedDay) {
-    if(isSameDay(_selectedDay, today)) {
+    if (isSameDay(_selectedDay, today)) {
       setState(() {
-      today = day;
-      _selectedDay = today;
-      _selectedEvents.value = _getEventsForDay(today);
-    });
+        today = day;
+        _selectedDay = today;
+        _selectedEvents.value = _getEventsForDay(today);
+      });
     }
   }
 
-
-  List<Event> _getEventsForDay (DateTime day){
+  List<Event> _getEventsForDay(DateTime day) {
     return events[day] ?? [];
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,13 +54,16 @@ class _CalendarState extends State<Calendar> {
                   child: TextField(controller: _userinput),
                 ),
                 actions: [
-                  ElevatedButton(onPressed: (){
-                    events.addAll({
-                      _selectedDay!: [Event(_userinput.text)]
-                      });
-                    Navigator.of(context).pop(); //storing the event
-                    _selectedEvents.value = _getEventsForDay(_selectedDay!);
-                  } , child: const Text("Submit"))
+                  ElevatedButton(
+                      onPressed: () {
+                        events.addAll({
+                          _selectedDay!: [Event(_userinput.text)]
+                        });
+                        Navigator.of(context).pop(); //storing the event
+                        _selectedEvents.value = _getEventsForDay(_selectedDay!);
+                        _userinput.clear();
+                      },
+                      child: const Text("Submit"))
                 ],
               );
             },
@@ -79,7 +82,8 @@ class _CalendarState extends State<Calendar> {
           focusedDay: today,
           firstDay: DateTime.utc(2012, 1, 1),
           lastDay: DateTime.utc(2030, 12, 31),
-          headerStyle: const HeaderStyle(formatButtonVisible: false, titleCentered: true),
+          headerStyle: const HeaderStyle(
+              formatButtonVisible: false, titleCentered: true),
           availableGestures: AvailableGestures.all,
           onDaySelected: _onDaySelected,
           eventLoader: _getEventsForDay,
@@ -89,62 +93,26 @@ class _CalendarState extends State<Calendar> {
         // You can add your event list or other widgets here
         Expanded(
           child: ValueListenableBuilder<List<Event>>(
-            valueListenable: _selectedEvents, builder: (context, value, _) {
-              return ListView.builder(itemCount:value.length ,itemBuilder: (context, index) {
-                return Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 4), 
-                  decoration: BoxDecoration(border: Border.all(), borderRadius: BorderRadius.circular(12)),
-                  child:ListTile(
-                    onTap: ()=> print(""), 
-                  title: Text(value[index].title,))
-                );
-              }
-              );
-            }),
+              valueListenable: _selectedEvents,
+              builder: (context, value, _) {
+                return ListView.builder(
+                    itemCount: value.length,
+                    itemBuilder: (context, index) {
+                      return Container(
+                          margin: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 4),
+                          decoration: BoxDecoration(
+                              border: Border.all(),
+                              borderRadius: BorderRadius.circular(12)),
+                          child: ListTile(
+                              onTap: () => print(""),
+                              title: Text(
+                                value[index].title,
+                              )));
+                    });
+              }),
         )
       ],
     );
   }
 }
-
-
-/*
-
-void addEvent() {
-    showDialog(
-      context: context,
-      builder: (BuildContext context) {
-        TextEditingController controller = TextEditingController();
-
-        return AlertDialog(
-          title: Text("Add a new event: "),
-          content: TextField(
-            controller: controller,
-            decoration: InputDecoration(hintText: "Enter item"),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                if (controller.text.isNotEmpty) {
-                  setState(() {
-                    toDoList.add(controller.text);
-                  });
-                  controller.clear();
-                  Navigator.pop(context);
-                }
-              },
-              child: Text('Add'),
-            ),
-            TextButton(
-              onPressed: () {
-                controller.clear();
-                Navigator.pop(context);
-              },
-              child: Text('Cancel'),
-            ),
-          ],
-        );
-      },
-    );
-  }
-*/
