@@ -24,7 +24,7 @@ class ProfileShell extends StatelessWidget{
   @override
   Widget build(BuildContext context) {
     
-    // scaffolds main profile page
+    // scaffolds main profile page``
     return Scaffold(
       appBar: AppBar(
         title: const Text("Whitworth University"),

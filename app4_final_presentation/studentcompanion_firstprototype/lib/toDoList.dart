@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 
-
-
-
 class ToDoListPage extends StatefulWidget {
   const ToDoListPage({Key? key}) : super(key: key);
 
@@ -114,5 +111,3 @@ class ToDoItem extends StatelessWidget {
     );
   }
 }
-
-
