@@ -31,7 +31,6 @@
 import 'package:flutter/material.dart'; // general helpful material components for flutter
 import 'package:table_calendar/table_calendar.dart'; // Import table_calendar package
 import 'package:profile_photo/profile_photo.dart'; // package used for handling a clickable profile photo
-//import 'package:json_cache/json_cache.dart'; // copied from https://pub.dev/packages/json_cache/install; unused
 import 'package:safe_local_storage/safe_local_storage.dart'; // copied from https://pub.dev/packages/safe_local_storage
 
 // files
@@ -88,7 +87,6 @@ InWidgetStorageWrite(String username, String email, String phone,
   // returns modified map to be copied over original
   return info = await storage.read();
 }
-
 // MainApp widget
 class MainApp extends StatelessWidget {
   const MainApp({Key? key});
@@ -135,19 +133,12 @@ class _HomeNavState extends State<HomeNav> {
     // Info on courses(similar to blackboard info)
     MyCourses(),
 
-    ///////
-    //School Events
-    //Club Events
-    //Personal Events
-    ///////
     InfoBoard(),
 
     //Calendar Page for important dates for whitworth students by default
     //And has basic functionality to add important dates too
     Calendar(),
 
-    // TODO(any): implement ToDo List page
-    // Placeholder for ToDo List page
     ToDoListPage(),
   ];
 
