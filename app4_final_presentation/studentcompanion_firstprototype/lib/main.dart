@@ -5,7 +5,7 @@
 // Purpose: An app meant to help college students organize the multiple types of events/activities/assignments of college life
 // App2 Creators: Ethan Wagner, Kiernan Martin, Eli Chapman
 // Colaborators: Dr. P. Tucker
-// 
+//
 // Sources:
 // #  | Link                                                        | description of use
 // -- | ----------------------------------------------------------- |--------------------------
@@ -56,7 +56,8 @@ void main() {
 // this is curently where the user's photo is, this should be changed to be safer/more effective
 // TODO(any): have better pfp storage integration
 // TODO(any): handle photo formatting
-NetworkImage _userPhoto = const NetworkImage('https://images.unsplash.com/photo-1602466439270-97a39a1496a4?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFiaXR8ZW58MHx8MHx8fDA%3D');
+NetworkImage _userPhoto = const NetworkImage(
+    'https://images.unsplash.com/photo-1602466439270-97a39a1496a4?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFiaXR8ZW58MHx8MHx8fDA%3D');
 // alt images for testing
 //NetworkImage _userPhoto = const NetworkImage('https://images.unsplash.com/photo-1712928247899-2932f4c7dea3?q=80&w=2942&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
 //NetworkImage _userPhoto = const NetworkImage('https://images.unsplash.com/photo-1712928244444444444447899-2932f4c7dea3?q=80&w=2942&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
@@ -67,23 +68,22 @@ NetworkImage _userPhoto = const NetworkImage('https://images.unsplash.com/photo-
 // and these should be loaded from a saved file, as opposed to just saving to file
 // Map of user info to be locally saved
 Map<String, dynamic> user_info = {
-  "username" : "username",
-  "email" : "email",
-  "phone" : "phone",
-  "interests" : "interests",
+  "username": "username",
+  "email": "email",
+  "phone": "phone",
+  "interests": "interests",
 };
 
 // function to handle storing data in a file for multiple uses
-InWidgetStorageWrite(String username, String email, String phone, String interests, Map<String, dynamic> info) async {
+InWidgetStorageWrite(String username, String email, String phone,
+    String interests, Map<String, dynamic> info) async {
   // writes to storage
-  storage.write (
-    {
-      "username" : username,
-      "email" : email,
-      "phone" : phone,
-      "interests" : interests,
-    }
-  );
+  storage.write({
+    "username": username,
+    "email": email,
+    "phone": phone,
+    "interests": interests,
+  });
   // returns modified map to be copied over original
   return info = await storage.read();
 }
@@ -93,21 +93,23 @@ class MainApp extends StatelessWidget {
   const MainApp({Key? key});
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false, // removes "DEBUG" banner from top right of app
+      debugShowCheckedModeBanner:
+          false, // removes "DEBUG" banner from top right of app
       title: 'Student Companion',
       // overarching data for the theme of the application
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
       initialRoute: '/', // creates main page
-      // due to the simplicity of the nature of pages of this application, routes was chosen to be used 
+      // due to the simplicity of the nature of pages of this application, routes was chosen to be used
       // (as opposed to a more complex navigator)
       routes: {
-        '/': (context) => const HomeNav(title: 'Student Companion Main Page'), // homepage route
-        '/profile': (context) => ProfileShell(_userPhoto, user_info), // profile route
-
+        '/': (context) => const HomeNav(
+            title: 'Student Companion Main Page'), // homepage route
+        '/profile': (context) =>
+            ProfileShell(_userPhoto, user_info), // profile route
       },
     );
   }
@@ -129,7 +131,6 @@ class _HomeNavState extends State<HomeNav> {
 
   // List of content widgets for each tab
   static final List<Widget> _widgetOptions = <Widget>[
-
     // Info on courses(similar to blackboard info)
     MyCourses(),
 
@@ -140,7 +141,7 @@ class _HomeNavState extends State<HomeNav> {
     ///////
     InfoBoard(),
 
-    //Calendar Page for important dates for whitworth students by default 
+    //Calendar Page for important dates for whitworth students by default
     //And has basic functionality to add important dates too
     Calendar(),
 
@@ -152,21 +153,20 @@ class _HomeNavState extends State<HomeNav> {
   // Function to handle when a bottom nav bar item is tapped
   void _onItemTapped(int index) async {
     // TODO(any): create specific function/widget for handling profile information updating
-    // currently this just updates user info to test when a button is pushed, 
+    // currently this just updates user info to test when a button is pushed,
     // in future this should most likely be in its own stateful widget
     // TODO(any): get this working on all devices
     // currently this works on my mac, but not my iphone, b/c of security permissions. uncomment to test/fix
-    // user_info = 
+    // user_info =
     //   await InWidgetStorageWrite(
     //     "test",
     //     "test",
     //     "test",
     //     "test",
     //     user_info
-    //   ); 
+    //   );
     setState(() {
       _selectedIndex = index; // Update the index
-      
     });
   }
 
@@ -174,7 +174,8 @@ class _HomeNavState extends State<HomeNav> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Text('Whitworth University')), // App bar title
+        title:
+            const Center(child: Text('Whitworth University')), // App bar title
         actions: [
           IconButton(
             // TODO(any): add notifications tab functionality
@@ -189,15 +190,23 @@ class _HomeNavState extends State<HomeNav> {
               image: _userPhoto, // sets image to display
               // sets what to do on tap, switched to profile page
               onTap: () {
-                  Navigator.pushNamed(context, '/profile'); 
-                }
-            ),
-          const Padding(padding: EdgeInsets.all(10)), // provides padding so profile photo is not on edge of screen
+                Navigator.pushNamed(context, '/profile');
+              }),
+          const Padding(
+              padding: EdgeInsets.all(
+                  10)), // provides padding so profile photo is not on edge of screen
         ],
       ),
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex), // Display the selected widget based on the index
+      body: IndexedStack(
+        children: <Widget>[
+          MyCourses(),
+          ToDoListPage(),
+          InfoBoard(),
+          Calendar(),
+        ],
+        // Display the selected widget based on the index
       ),
+      //_widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
