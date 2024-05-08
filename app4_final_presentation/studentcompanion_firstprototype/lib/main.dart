@@ -40,6 +40,7 @@ import './InfoBoard.dart'; // import custom class
 import './MyCourses.dart'; // import custom class
 import './calendar.dart'; // import custom class calendar.dart file
 import './toDoList.dart';
+import 'resources.dart';
 
 // TODO(any): create better storage practices
 // TODO(any): confirm storage works on all devices
@@ -106,10 +107,10 @@ class MainApp extends StatelessWidget {
       // due to the simplicity of the nature of pages of this application, routes was chosen to be used
       // (as opposed to a more complex navigator)
       routes: {
-        '/': (context) => const HomeNav(
-            title: 'Student Companion Main Page'), // homepage route
-        '/profile': (context) =>
-            ProfileShell(_userPhoto, user_info), // profile route
+        '/': (context) => const HomeNav(title: 'Student Companion Main Page'), // homepage route
+        '/profile': (context) => ProfileShell(_userPhoto, user_info), // profile route
+        '/resources': (context) => ResourceScreen(),
+
       },
     );
   }
@@ -179,8 +180,8 @@ class _HomeNavState extends State<HomeNav> {
         actions: [
           IconButton(
             // TODO(any): add notifications tab functionality
-            onPressed: () {}, // Functionality for notifications button
-            icon: const Icon(Icons.notifications), // Notifications icon
+            onPressed: () =>Navigator.pushNamedAndRemoveUntil(context, '/resources', (r) => false), // Navigate to Resources Screen
+            icon: const Icon(Icons.help_outline_rounded), // Notifications icon
           ),
           // action pressing button takes (account tab)
           ProfilePhoto(
