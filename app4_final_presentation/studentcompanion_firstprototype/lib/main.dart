@@ -190,13 +190,13 @@ class _HomeNavState extends State<HomeNav> {
         ],
       ),
       body: IndexedStack(
+        index: _selectedIndex,
         children: <Widget>[
           MyCourses(),
-          ToDoListPage(),
           InfoBoard(),
           Calendar(),
-        ],
-        // Display the selected widget based on the index
+          ToDoListPage(),
+        ], // Display the selected widget based on the index
       ),
       //_widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
