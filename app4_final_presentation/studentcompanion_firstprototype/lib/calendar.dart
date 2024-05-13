@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:studentcompanion/main.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'event.dart';
 
@@ -26,13 +25,10 @@ class _CalendarState extends State<Calendar> {
   }
 
   void _onDaySelected(DateTime day, DateTime focusedDay) {
-    if (isSameDay(_selectedDay, today)) {
-      setState(() {
-        today = day;
-        _selectedDay = today;
-        _selectedEvents.value = _getEventsForDay(today);
-      });
-    }
+    setState(() {
+      _selectedDay = day;
+      _selectedEvents.value = _getEventsForDay(day);
+    });
   }
 
   List<Event> _getEventsForDay(DateTime day) {
@@ -56,16 +52,15 @@ class _CalendarState extends State<Calendar> {
                 ),
                 actions: [
                   ElevatedButton(
-                      onPressed: () {
-                        events.addAll({
-                          _selectedDay!: [Event(_userinput.text)]
-                        });
-                        storage.write(Event(_userinput.text));
-                        Navigator.of(context).pop(); //storing the event
-                        _selectedEvents.value = _getEventsForDay(_selectedDay!);
-                        _userinput.clear();
-                      },
-                      child: const Text("Submit"))
+                    onPressed: () {
+                      final newEvent = Event(_userinput.text);
+                      events.putIfAbsent(_selectedDay!, () => []).add(newEvent);
+                      Navigator.of(context).pop(); // Close dialog
+                      _selectedEvents.value = _getEventsForDay(_selectedDay!);
+                      _userinput.clear();
+                    },
+                    child: const Text("Submit"),
+                  ),
                 ],
               );
             },
@@ -85,35 +80,38 @@ class _CalendarState extends State<Calendar> {
           firstDay: DateTime.utc(2012, 1, 1),
           lastDay: DateTime.utc(2030, 12, 31),
           headerStyle: const HeaderStyle(
-              formatButtonVisible: false, titleCentered: true),
+            formatButtonVisible: false,
+            titleCentered: true,
+          ),
           availableGestures: AvailableGestures.all,
           onDaySelected: _onDaySelected,
           eventLoader: _getEventsForDay,
-          selectedDayPredicate: (day) => isSameDay(day, today),
+          selectedDayPredicate: (day) => isSameDay(day, _selectedDay),
           startingDayOfWeek: StartingDayOfWeek.monday,
         ),
-        // You can add your event list or other widgets here
         Expanded(
           child: ValueListenableBuilder<List<Event>>(
-              valueListenable: _selectedEvents,
-              builder: (context, value, _) {
-                return ListView.builder(
-                    itemCount: value.length,
-                    itemBuilder: (context, index) {
-                      return Container(
-                          margin: const EdgeInsets.symmetric(
-                              horizontal: 12, vertical: 4),
-                          decoration: BoxDecoration(
-                              border: Border.all(),
-                              borderRadius: BorderRadius.circular(12)),
-                          child: ListTile(
-                              onTap: () => print(""),
-                              title: Text(
-                                value[index].title,
-                              )));
-                    });
-              }),
-        )
+            valueListenable: _selectedEvents,
+            builder: (context, value, _) {
+              return ListView.builder(
+                itemCount: value.length,
+                itemBuilder: (context, index) {
+                  return Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+                    decoration: BoxDecoration(
+                      border: Border.all(),
+                      borderRadius: BorderRadius.circular(12),
+                    ),
+                    child: ListTile(
+                      onTap: () => print(""),
+                      title: Text(value[index].title),
+                    ),
+                  );
+                },
+              );
+            },
+          ),
+        ),
       ],
     );
   }
