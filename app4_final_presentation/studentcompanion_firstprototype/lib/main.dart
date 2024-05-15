@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart'; // general helpful material components for flutter
+// ignore: unused_import
 import 'package:table_calendar/table_calendar.dart'; // Import table_calendar package
 import 'package:profile_photo/profile_photo.dart'; // package used for handling a clickable profile photo
 import 'package:safe_local_storage/safe_local_storage.dart'; // copied from https://pub.dev/packages/safe_local_storage
@@ -75,6 +76,7 @@ class _HomeNavState extends State<HomeNav> {
   int _selectedIndex = 0; // Index for selected option in the bottom nav bar
 
 
+  // ignore: unused_field
   static final List<Widget> _widgetOptions = <Widget>[
     const MyCourses(),
 
