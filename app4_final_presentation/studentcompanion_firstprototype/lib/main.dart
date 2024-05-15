@@ -100,6 +100,7 @@ class MainApp extends StatelessWidget {
       // overarching data for the theme of the application
       theme: ThemeData(
         primarySwatch: Colors.blue,
+        canvasColor: Colors.blue,
       ),
       initialRoute: '/', // creates main page
       // due to the simplicity of the nature of pages of this application, routes was chosen to be used
@@ -166,40 +167,39 @@ class _HomeNavState extends State<HomeNav> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blue,
         title:
-            const Center(child: Text('Whitworth University')), // App bar title
+            const Center(child: Text('Student Companion Prototype')),
         actions: [
           IconButton(
-            // TODO(any): add notifications tab functionality
             onPressed: () =>Navigator.pushNamedAndRemoveUntil(context, '/resources', (r) => false), // Navigate to Resources Screen
             icon: const Icon(Icons.help_outline_rounded), // Notifications icon
           ),
-          // action pressing button takes (account tab)
           ProfilePhoto(
-              totalWidth: 31, // sets diameter
-              cornerRadius: 20, // sets how curved the corners are
-              color: Colors.black, // color to show if no image
-              image: _userPhoto, // sets image to display
-              // sets what to do on tap, switched to profile page
+              totalWidth: 31, 
+              cornerRadius: 20, 
+              color: Colors.black, 
+              image: _userPhoto,
               onTap: () {
                 Navigator.pushNamed(context, '/profile');
               }),
           const Padding(
               padding: EdgeInsets.all(
-                  10)), // provides padding so profile photo is not on edge of screen
+                  10)),
         ],
       ),
       body: IndexedStack(
         index: _selectedIndex,
-        children: <Widget>[
+        children: const <Widget>[
           MyCourses(),
           InfoBoard(),
           Calendar(),
           ToDoListPage(),
         ], // Display the selected widget based on the index
       ),
-      //_widgetOptions.elementAt(_selectedIndex),
+
       bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.black,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.book), // Icon for My Courses page
@@ -219,8 +219,8 @@ class _HomeNavState extends State<HomeNav> {
           ),
         ],
         currentIndex: _selectedIndex, // Current index for the selected item
-        selectedItemColor: Colors.blue, // Color for the selected item
-        unselectedItemColor: Colors.black, // Color for unselected items
+        selectedItemColor: Colors.black, // Color for the selected item
+        unselectedItemColor: Colors.white, // Color for unselected items
         onTap: _onItemTapped, // Function to handle when an item is tapped
       ),
     );
