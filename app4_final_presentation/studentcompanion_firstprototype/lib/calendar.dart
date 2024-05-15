@@ -88,7 +88,23 @@ class _CalendarState extends State<Calendar> {
           eventLoader: _getEventsForDay,
           selectedDayPredicate: (day) => isSameDay(day, _selectedDay),
           startingDayOfWeek: StartingDayOfWeek.monday,
+          calendarStyle: const CalendarStyle(
+          defaultTextStyle: TextStyle(color: Colors.blue), // Text color
+          weekendTextStyle: TextStyle(color: Colors.blue), // Weekend text color
+          selectedTextStyle: TextStyle(color: Colors.white), // Selected day text color
+          todayTextStyle: TextStyle(color: Colors.blue), // Today text color
+          outsideTextStyle: TextStyle(color: Colors.grey), // Outside day text color
+          outsideDaysVisible: false, // Hide outside days
+          todayDecoration: BoxDecoration(
+            color: Colors.black, // Today's background color
+            shape: BoxShape.circle, // Shape of today's background
+          ),
+                    selectedDecoration: BoxDecoration(
+            color: Colors.blue, // Selected day's background color
+            shape: BoxShape.circle, // Shape of selected day's background
+          ),
         ),
+      ),
         Expanded(
           child: ValueListenableBuilder<List<Event>>(
             valueListenable: _selectedEvents,
