@@ -1,15 +1,6 @@
-// ////////
-// // Purpose: file containing widgets for InfoBoard page
-// ////////
-
-//https://www.geeksforgeeks.org/web-scraping-in-flutter/#
-//Website used to learn how to build a webscrape in Flutter
-
-// // packages
 import 'package:flutter/material.dart';
 import 'package:html/parser.dart' as parser; 
 import 'package:http/http.dart' as http;
-import 'package:safe_local_storage/safe_local_storage.dart'; 
 
 class InfoBoard extends StatefulWidget {
   const InfoBoard({Key? key}): super(key:key);
@@ -18,107 +9,131 @@ class InfoBoard extends StatefulWidget {
 }
 
 class _InfoBoard extends State<InfoBoard> {
-
   String title1 = '';
   String title2 = '';
   String title3 = '';
 
   Future<List<String>> scrapeText() async {
-    
-    //gets response from webpage
-    final response =
-      await http.Client().get(Uri.parse('https://news.whitworth.edu/'));
+    // Gets response from webpage
+    final response = await http.Client().get(Uri.parse('https://news.whitworth.edu/'));
 
-    //if status code from response is 200 then it has succesfully connected to webpage
+    // If status code from response is 200, then it has successfully connected to the webpage
     if (response.statusCode == 200) {
-      var document = parser.parse(response.body);//retrieves html document
-      
-    //try statement that scrapes information from each post
-    try{
-      var responseTitle1 = document
-        .getElementsByClassName('blog-posts hfeed')[0]
-        .children[1];
+      var document = parser.parse(response.body); // Retrieves HTML document
 
+      // Try statement that scrapes information from each post
+      try {
+        var responseTitle1 = document
+          .getElementsByClassName('blog-posts hfeed')[0]
+          .children[1]
+          .text
+          .trim();
 
-      print(responseTitle1.text.trim());
+        var responseTitle2 = document
+          .getElementsByClassName('blog-posts hfeed')[0]
+          .children[2]
+          .text
+          .trim();
 
-      var responseTitle2 = document
-        .getElementsByClassName('blog-posts hfeed')[0]
-        .children[2];
+        var responseTitle3 = document
+          .getElementsByClassName('blog-posts hfeed')[0]
+          .children[3]
+          .text
+          .trim();
 
-      print(responseTitle2.text.trim());
+        // Remove unwanted text from the titles
+        responseTitle1 = _cleanText(responseTitle1);
+        responseTitle2 = _cleanText(responseTitle2);
+        responseTitle3 = _cleanText(responseTitle3);
 
-      var responseTitle3 = document
-        .getElementsByClassName('blog-posts hfeed')[0]
-        .children[3];
-
-      print(responseTitle3.text.trim());
-
-      //returns all of the information scraped
-      return [
-        responseTitle1.text.trim(),
-        responseTitle2.text.trim(),
-        responseTitle3.text.trim()
-      ];
-      //cathes and returns errors
-    } catch (e) {
-      return ['','','ERROR!'];
-    }
+        // Returns all of the information scraped
+        return [
+          responseTitle1,
+          responseTitle2,
+          responseTitle3
+        ];
+      } catch (e) {
+        return ['', '', 'ERROR!'];
+      }
     } else {
-      return ['','','ERROR: ${response.statusCode}.'];
+      return ['', '', 'ERROR: ${response.statusCode}.'];
     }
   }
 
+String _cleanText(String text) {
+    // Remove multiple unwanted parts
+    final unwantedTexts = [
+      'Email ThisBlogThis!Share to TwitterShare to FacebookShare to Pinterest',
+      'Read more »',
+    ];
+    
+    for (var unwantedText in unwantedTexts) {
+      text = text.replaceAll(unwantedText, '');
+    }
+    
+    return text.trim(); // Trim the final cleaned text
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(title: const Text('Information Board')),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(8.0),
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Column(
-                children: [
-                  Text(title1, style: const TextStyle(
-                    fontSize: 20, fontWeight: FontWeight.bold
-                  )),
-                  const SizedBox(height:2,),
-                  Text(title2, style: const TextStyle(
-                    fontSize: 20, fontWeight: FontWeight.bold
-                  )),
-                  const SizedBox(height: 2,),
-                  Text(title3, style: const TextStyle(
-                    fontSize: 20, fontWeight: FontWeight.bold
-                  )),
-                  const SizedBox(height: 2,),
-                ],
-              ),
-              SizedBox(height:MediaQuery.of(context).size.height * 0.05),
-              MaterialButton(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            if (title1.isNotEmpty) ...[
+              _buildInfoCard(title1),
+              const SizedBox(height: 8),
+            ],
+            if (title2.isNotEmpty) ...[
+              _buildInfoCard(title2),
+              const SizedBox(height: 8),
+            ],
+            if (title3.isNotEmpty) ...[
+              _buildInfoCard(title3),
+              const SizedBox(height: 8),
+            ],
+            if (title1.isEmpty && title2.isEmpty && title3.isEmpty)
+              const Text('No information available.'),
+            SizedBox(height: MediaQuery.of(context).size.height * 0.05),
+            Center(
+              child: ElevatedButton(
                 onPressed: () async {
+                  // During button press, it runs the webscraper in the background
+                  final response = await scrapeText();
 
-                  //during button press it runs the webscraper in the background
-                  final response= await scrapeText();
-
-                  //sets the information
+                  // Sets the information
                   setState(() {
                     title1 = response[0];
                     title2 = response[1];
                     title3 = response[2];
                   });
                 },
-                child: Text(
-                  'Refresh Data',
-                ),
-                color: Colors.blueAccent,
-              )
-            ]
-          )
-        )
-      )
+                child: const Text('Refresh Data'),
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget _buildInfoCard(String title) {
+    return Card(
+      elevation: 4,
+      margin: const EdgeInsets.symmetric(vertical: 4),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Text(
+          title,
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
     );
   }
 }
