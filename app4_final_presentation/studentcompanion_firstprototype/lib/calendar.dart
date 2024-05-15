@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:table_calendar/table_calendar.dart';
 import 'event.dart';
 
+//using the table calendar package within flutter.
+
 class Calendar extends StatefulWidget {
   const Calendar({Key? key}) : super(key: key);
 
@@ -10,10 +12,10 @@ class Calendar extends StatefulWidget {
 }
 
 class _CalendarState extends State<Calendar> {
-  DateTime today = DateTime.now();
-  DateTime? _selectedDay;
-  Map<DateTime, List<Event>> events = {};
-  late TextEditingController _userinput;
+  DateTime today = DateTime.now(); //todays date selected everytime
+  DateTime? _selectedDay; //other selected days
+  Map<DateTime, List<Event>> events = {}; //allows multiple events per day
+  late TextEditingController _userinput; //event title input by user
   late final ValueNotifier<List<Event>> _selectedEvents;
 
   @override
@@ -32,14 +34,14 @@ class _CalendarState extends State<Calendar> {
   }
 
   List<Event> _getEventsForDay(DateTime day) {
-    return events[day] ?? [];
+    return events[day] ?? [];//display event for that day
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: calendar(),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: FloatingActionButton( //plus button
         onPressed: () {
           showDialog(
             context: context,
@@ -55,7 +57,7 @@ class _CalendarState extends State<Calendar> {
                     onPressed: () {
                       final newEvent = Event(_userinput.text);
                       events.putIfAbsent(_selectedDay!, () => []).add(newEvent);
-                      Navigator.of(context).pop(); // Close dialog
+                      Navigator.of(context).pop();
                       _selectedEvents.value = _getEventsForDay(_selectedDay!);
                       _userinput.clear();
                     },
@@ -74,7 +76,7 @@ class _CalendarState extends State<Calendar> {
   Widget calendar() {
     return Column(
       children: [
-        TableCalendar(
+        TableCalendar( //calendar widget
           locale: "en_US",
           focusedDay: today,
           firstDay: DateTime.utc(2012, 1, 1),
@@ -88,20 +90,20 @@ class _CalendarState extends State<Calendar> {
           eventLoader: _getEventsForDay,
           selectedDayPredicate: (day) => isSameDay(day, _selectedDay),
           startingDayOfWeek: StartingDayOfWeek.monday,
-          calendarStyle: const CalendarStyle(
-          defaultTextStyle: TextStyle(color: Colors.blue), // Text color
-          weekendTextStyle: TextStyle(color: Colors.blue), // Weekend text color
-          selectedTextStyle: TextStyle(color: Colors.white), // Selected day text color
-          todayTextStyle: TextStyle(color: Colors.blue), // Today text color
-          outsideTextStyle: TextStyle(color: Colors.grey), // Outside day text color
-          outsideDaysVisible: false, // Hide outside days
+          calendarStyle: const CalendarStyle( //added to match our theme
+          defaultTextStyle: TextStyle(color: Colors.blue), 
+          weekendTextStyle: TextStyle(color: Colors.blue), 
+          selectedTextStyle: TextStyle(color: Colors.white),
+          todayTextStyle: TextStyle(color: Colors.blue), 
+          outsideTextStyle: TextStyle(color: Colors.grey),
+          outsideDaysVisible: false, 
           todayDecoration: BoxDecoration(
-            color: Colors.black, // Today's background color
-            shape: BoxShape.circle, // Shape of today's background
+            color: Colors.black, 
+            shape: BoxShape.circle, 
           ),
                     selectedDecoration: BoxDecoration(
-            color: Colors.blue, // Selected day's background color
-            shape: BoxShape.circle, // Shape of selected day's background
+            color: Colors.blue, 
+            shape: BoxShape.circle, 
           ),
         ),
       ),
@@ -120,7 +122,7 @@ class _CalendarState extends State<Calendar> {
                     ),
                     child: ListTile(
                       onTap: () => print(""),
-                      title: Text(value[index].title),
+                      title: Text(value[index].title), //pulls the info from event.dart for the title event
                     ),
                   );
                 },
