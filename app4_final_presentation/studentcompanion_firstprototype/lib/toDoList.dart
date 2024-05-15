@@ -14,7 +14,7 @@ class _ToDoListPageState extends State<ToDoListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Your To-Do List'),
+        title: const Text('Your To-Do List'),
       ),
       body: ReorderableListView(
         onReorder: (oldIndex, newIndex) {
@@ -44,7 +44,7 @@ class _ToDoListPageState extends State<ToDoListPage> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: _addItem,
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
       ),
     );
   }
@@ -56,10 +56,10 @@ class _ToDoListPageState extends State<ToDoListPage> {
         TextEditingController controller = TextEditingController();
 
         return AlertDialog(
-          title: Text("Add New Item"),
+          title: const Text("Add New Item"),
           content: TextField(
             controller: controller,
-            decoration: InputDecoration(hintText: "Enter item"),
+            decoration: const InputDecoration(hintText: "Enter item"),
           ),
           actions: [
             TextButton(
@@ -72,14 +72,14 @@ class _ToDoListPageState extends State<ToDoListPage> {
                   Navigator.pop(context);
                 }
               },
-              child: Text('Add'),
+              child: const Text('Add'),
             ),
             TextButton(
               onPressed: () {
                 controller.clear();
                 Navigator.pop(context);
               },
-              child: Text('Cancel'),
+              child: const Text('Cancel'),
             ),
           ],
         );
@@ -102,10 +102,10 @@ class ToDoItem extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       key: key,
-      leading: Icon(Icons.drag_handle),
+      leading: const Icon(Icons.drag_handle),
       title: Text(text),
       trailing: IconButton(
-        icon: Icon(Icons.delete),
+        icon: const Icon(Icons.delete),
         onPressed: onDelete,
       ),
     );

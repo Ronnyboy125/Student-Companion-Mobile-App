@@ -1,8 +1,3 @@
-////////
-// Purpose: file containing widgets for InfoBoard page
-////////
-
-// packages
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
@@ -24,7 +19,7 @@ class Course {
 }
 
 class _MyCoursesState extends State<MyCourses> {
-  List<Course> courses = []; // List to store courses
+  List<Course> courses = []; 
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +28,7 @@ class _MyCoursesState extends State<MyCourses> {
         children: [
           ElevatedButton(
             onPressed: () {
-              _addCourseDialog(context); // Open the dialog to add a new course
+              _addCourseDialog(context);
             },
             child: const Icon(Icons.add),
             style: const ButtonStyle(
@@ -51,7 +46,6 @@ class _MyCoursesState extends State<MyCourses> {
                       courses.removeAt(index);
                     });
                   },
-                  // Show a red background as the item is swiped away.
                   background: Container(color: Colors.red),
                   confirmDismiss: (direction) async {
                     return await showDialog(
@@ -82,7 +76,7 @@ class _MyCoursesState extends State<MyCourses> {
                     );
                   },
                   child: Card(
-                    margin: EdgeInsets.only(
+                    margin: const EdgeInsets.only(
                         top: 20, bottom: 20, left: 10, right: 10),
                     color: const Color.fromARGB(255, 198, 198, 198),
                     child: ListTile(
@@ -93,7 +87,7 @@ class _MyCoursesState extends State<MyCourses> {
                       ),
                       contentPadding: EdgeInsets.all(10),
                       title: Text(courses[index].name!),
-                      titleTextStyle: TextStyle(
+                      titleTextStyle: const TextStyle(
                           fontWeight: FontWeight.w500,
                           color: Colors.black,
                           fontSize: 18),
@@ -125,13 +119,13 @@ class _MyCoursesState extends State<MyCourses> {
             children: [
               TextField(
                 controller: nameController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     labelText: 'Course Name',
                     hintStyle: TextStyle(color: Colors.blue, fontSize: 18)),
               ),
               TextField(
                 controller: detailsController,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     labelText: 'Course Details',
                     hintStyle: TextStyle(color: Colors.blue, fontSize: 18)),
               ),
@@ -142,7 +136,7 @@ class _MyCoursesState extends State<MyCourses> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text(
+              child: const Text(
                 'Cancel',
                 style: TextStyle(color: Colors.blue, fontSize: 18),
               ),
@@ -159,14 +153,14 @@ class _MyCoursesState extends State<MyCourses> {
                 });
                 Navigator.of(context).pop();
               },
-              child: Text(
+              child: const Text(
                 'Add',
                 style: TextStyle(color: Colors.blue, fontSize: 18),
               ),
             ),
           ],
           backgroundColor: Colors.white,
-          titleTextStyle: TextStyle(fontSize: 40, color: Colors.blue),
+          titleTextStyle: const TextStyle(fontSize: 40, color: Colors.blue),
         );
       },
     );
