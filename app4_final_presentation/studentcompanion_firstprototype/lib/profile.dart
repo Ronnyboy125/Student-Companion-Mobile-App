@@ -1,12 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:profile_photo/profile_photo.dart'; 
-    
-// ignore: must_be_immutable
-class ProfileShell extends StatelessWidget{
-  ProfileShell(this.user_image, this.user_info_map, {Key? key,});
 
-  NetworkImage user_image; 
-  Map<String, dynamic> user_info_map; 
+//Widget used to build a info card background for information
+Widget _buildInfoCard(String title) {
+    return Card(
+      elevation: 4,
+      margin: const EdgeInsets.symmetric(vertical: 4),
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Text(
+          title,
+          style: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+    );
+  }
+
+class ProfileShell extends StatelessWidget{
+  ProfileShell({Key? key,});
+
+  String info = ('Pete Tucker\nPTucker@my.whitworth.edu\n509-111-2222\nComputer Science');
 
   @override
   Widget build(BuildContext context) {
@@ -15,12 +31,6 @@ class ProfileShell extends StatelessWidget{
     return Scaffold(
       appBar: AppBar(
         title: const Text("Whitworth University"),
-        actions: [
-            IconButton(
-              onPressed: () => print("WIP"), //working in progress
-              icon: const Icon(Icons.edit),
-            ),
-        ],
       ),
       body: Center(
         child: Column(
@@ -30,13 +40,10 @@ class ProfileShell extends StatelessWidget{
                 totalWidth: 300, 
                 cornerRadius: 300,
                 color: Colors.black,
-                image: user_image, 
+                image: AssetImage('assets/Pete.jpg'), 
                 ),
-            const Padding(padding: EdgeInsets.all(10)), 
-            Text(user_info_map["username"]!), // User's username
-            Text(user_info_map["email"]!), // User's email
-            Text(user_info_map["phone"]!), // User's phone number
-            Text(user_info_map["interests"]!), // list of user's interests
+            const Padding(padding: EdgeInsets.all(10)),
+            _buildInfoCard(info),
           ],
         ),
       ),

@@ -16,15 +16,6 @@ final storage = SafeLocalStorage('storage_test.json');
 void main() {
   runApp(const MainApp());
 }
-NetworkImage _userPhoto = const NetworkImage(
-    'https://images.unsplash.com/photo-1602466439270-97a39a1496a4?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmFiaXR8ZW58MHx8MHx8fDA%3D');
-
-Map<String, dynamic> user_info = { //future implementation
-  "username": "username",
-  "email": "email",
-  "phone": "phone",
-  "interests": "interests",
-};
 
 // function to handle storing data in a file for multiple uses
 InWidgetStorageWrite(String username, String email, String phone,
@@ -55,7 +46,7 @@ class MainApp extends StatelessWidget {
       initialRoute: '/', 
       routes: {
         '/': (context) => const HomeNav(title: 'Student Companion Main Page'), 
-        '/profile': (context) => ProfileShell(_userPhoto, user_info), 
+        '/profile': (context) => ProfileShell(), 
         '/resources': (context) => ResourceScreen(),
 
       },
@@ -109,7 +100,7 @@ class _HomeNavState extends State<HomeNav> {
               totalWidth: 31, 
               cornerRadius: 20, 
               color: Colors.black, 
-              image: _userPhoto,
+              image: AssetImage('assets/Pete.jpg'),
               onTap: () {
                 Navigator.pushNamed(context, '/profile');
               }),

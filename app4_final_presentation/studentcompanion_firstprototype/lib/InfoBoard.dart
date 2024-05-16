@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:html/parser.dart' as parser; 
+import 'package:html/parser.dart' as parser;
 import 'package:http/http.dart' as http;
+
+//https://www.geeksforgeeks.org/web-scraping-in-flutter/#
+//Website used to learn how to build a webscrape in Flutter
 
 class InfoBoard extends StatefulWidget {
   const InfoBoard({Key? key}): super(key:key);
@@ -11,13 +14,15 @@ class InfoBoard extends StatefulWidget {
 class _InfoBoard extends State<InfoBoard> {
   String title1 = '';
   String title2 = '';
-  String title3 = '';
+  String title3 = '';//strings created for the purpose of holding scraped text
 
   Future<List<String>> scrapeText() async {
     final response = await http.Client().get(Uri.parse('https://news.whitworth.edu/'));
 
+    //200 response code shows succesful connection to website
     if (response.statusCode == 200) {
-      var document = parser.parse(response.body); 
+      var document = parser.parse(response.body);
+      //try statement that finds specific text in HTML code and sets it to new variables
       try {
         var responseTitle1 = document
           .getElementsByClassName('blog-posts hfeed')[0]
@@ -40,7 +45,7 @@ class _InfoBoard extends State<InfoBoard> {
         responseTitle1 = _cleanText(responseTitle1); //removing the unwanted text
         responseTitle2 = _cleanText(responseTitle2);
         responseTitle3 = _cleanText(responseTitle3);
-        return [ //returning the clean text without the specific deleted texts
+        return [ //returns text
           responseTitle1,
           responseTitle2,
           responseTitle3
@@ -89,6 +94,9 @@ String _cleanText(String text) {
             ],
             if (title1.isEmpty && title2.isEmpty && title3.isEmpty)
               const Text('No information available.'),
+
+            //button created to get real time updates from Whitworths news page
+            //initiates the web scraper
             SizedBox(height: MediaQuery.of(context).size.height * 0.05),
             Center(
               child: ElevatedButton(
