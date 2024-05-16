@@ -83,7 +83,7 @@ class _MyCoursesState extends State<MyCourses> {
                       leading: FractionallySizedBox(
                         widthFactor: 0.4,
                         heightFactor: 1.6,
-                        child: Image.asset('assets/book.jpg', fit: BoxFit.fill),
+                        child: Image.asset('assets/classroom.jpg', fit: BoxFit.fill),
                       ),
                       contentPadding: EdgeInsets.all(10),
                       title: Text(courses[index].name!),
